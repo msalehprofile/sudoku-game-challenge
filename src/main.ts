@@ -1,17 +1,24 @@
+import countdown from 'time-span'
+
 const selectChosenBox = document.querySelectorAll(".grid__box__no");
 const selectChosenNumber = document.querySelectorAll(".numbers__single");
+const errorCount = document.querySelector<HTMLDivElement>(".error-count");
 
-if (!selectChosenBox || !selectChosenNumber) {
+if (!selectChosenBox || !selectChosenNumber || !errorCount) {
   throw new Error("Issue With Selector");
 }
 
-let box = "";
+
 let boxId = "";
 let boxValue = "";
-let boxHTML = "";
 let numberId = "";
+let newHTML = "";
 
+let countdown = require('time-counter'),
+    log = console.log.bind(console);
 
+let countUpTimer = new Timer();
+countUpTimer.on('change', log);
 
 // const handleBoxSelector = (event: Event) => {
 //   let boxAsElement = event.target as HTMLInputElement
@@ -22,16 +29,17 @@ let numberId = "";
 // };
 
 selectChosenBox.forEach((box) => {
-  boxId = "" ;
+  boxId = "";
   box.addEventListener("click", () => {
+    numberId = " ";
     boxId = String(box.getAttribute("id"));
-    boxValue = boxId.slice(1)
-    let boxInnerText = box.innerHTML
+    boxValue = boxId.slice(1);
+    let boxInnerText = box.innerHTML;
     console.log(boxId);
+    console.log("this is the numberid", numberId);
     checkMatch();
-    })
-  })
-
+  });
+});
 
 selectChosenNumber.forEach((number) => {
   number.addEventListener("click", () => {
@@ -43,15 +51,17 @@ selectChosenNumber.forEach((number) => {
 
 const checkMatch = () => {
   if (boxValue === numberId) {
-    let newHTML = document.getElementById(boxId)
-    newHTML.innerHTML = numberId
-    newHTML.style.color = 'blue'
-    console.log(newHTML)
-  } else {
-    let newHTML = document.getElementById(boxId)
-    newHTML.innerHTML = numberId
-    newHTML.style.color = 'red'
-    console.log(newHTML)
+    newHTML = document.getElementById(boxId);
+    newHTML.innerHTML = numberId;
+    newHTML.style.color = "blue";
+    console.log(newHTML);
+  } else if (numberId === " " || boxId === " ") {
+    errorCount.innerHTML = errorCount.innerHTML;
+  } else if (boxValue != numberId) {
+    newHTML = document.getElementById(boxId);
+    newHTML.innerHTML = numberId;
+    newHTML.style.color = "red";
+    errorCount.innerHTML = String(Number(errorCount.innerHTML) + 1)
   }
 };
 

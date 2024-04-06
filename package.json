@@ -9,8 +9,13 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/node": "^20.12.5",
     "sass": "^1.74.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "time-counter": "^1.0.0",
+    "time-span": "^5.1.0"
   }
 }
