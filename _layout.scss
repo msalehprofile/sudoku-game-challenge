@@ -33,6 +33,7 @@
         border: 0.5px solid black;
         justify-content: center;
         align-items: center;
+        background-color: white;
 
         &:active {
             border: 2px solid blue;
@@ -45,4 +46,8 @@
     justify-content: space-between;
     align-items: center;
     margin: 4px 45px;
+}
+
+.error-count {
+    border: 1px solid red;
 }
