@@ -1,16 +1,32 @@
-import countdown from "time-span";
+import { renderEasy } from "./easy";
+import { renderMedium } from "./medium";
+import { renderHard } from "./hard";
 
 const selectChosenBox = document.querySelectorAll(".grid__box__no");
 const selectChosenNumber = document.querySelectorAll(".numbers__single");
-const errorCount = document.querySelector<HTMLDivElement>(".error-count");
+const errorCount = document.querySelector<HTMLDivElement>(
+  ".navigation__errors--error-count"
+);
+const selectDelete = document.querySelector<HTMLDivElement>(
+  ".screen__erase--delete"
+);
+const levelButtonSelection = document.querySelectorAll<HTMLButtonElement>(
+  ".navigation__difficulty--button"
+);
+const sodukoGridHTML = document.querySelector(".screen__grid");
+const restartButton = document.querySelector(".navigation__restart");
 
-if (!selectChosenBox || !selectChosenNumber || !errorCount) {
+if (
+  !selectChosenBox ||
+  !selectChosenNumber ||
+  !errorCount ||
+  !selectDelete ||
+  !levelButtonSelection ||
+  !sodukoGridHTML ||
+  !restartButton
+) {
   throw new Error("Issue With Selector");
 }
-
-console.log(selectChosenBox)
-
-
 
 let boxId = "";
 let boxValue = "";
@@ -19,13 +35,34 @@ let inputtedNumber = "";
 let boxHorizontalClass = "";
 let boxVerticalClass = "";
 let boxtotalClass = "";
+let selectedLevel = "";
+// const handleLevelHTML = () => {
+//   let selectedLevel = document.get
+// }
 
+levelButtonSelection.forEach((level) => {
+  level.addEventListener("click", () => {
+    selectedLevel = String(level.getAttribute("id"));
+    if (selectedLevel === "easy") {
+      sodukoGridHTML.innerHTML = renderEasy;
+    } else if (selectedLevel === "medium") {
+      sodukoGridHTML.innerHTML = renderMedium;
+    } else if (selectedLevel === "hard") {
+      sodukoGridHTML.innerHTML = renderHard;
+    }
+    handleRestart();
+  });
+});
 
-// let countdown = require('time-counter'),
-//     log = console.log.bind(console);
-
-// let countUpTimer = new Timer();
-// countUpTimer.on('change', log);
+const handleRestart = () => {
+  if (selectedLevel === "easy") {
+    sodukoGridHTML.innerHTML = renderEasy;
+  } else if (selectedLevel === "medium") {
+    sodukoGridHTML.innerHTML = renderMedium;
+  } else if (selectedLevel === "hard") {
+    sodukoGridHTML.innerHTML = renderHard;
+  }
+};
 
 selectChosenBox.forEach((box) => {
   box.addEventListener("click", () => {
@@ -34,7 +71,7 @@ selectChosenBox.forEach((box) => {
     boxVerticalClass = String(box.getAttribute("class")).slice(3, 5);
     boxHorizontalClass = String(box.getAttribute("class")).slice(0, 2);
     boxtotalClass = String(box.getAttribute("class")).slice(6, 8);
-    box.getAttribute('class')
+    box.getAttribute("class");
 
     boxValue = boxId.slice(1);
     console.log("this is the boxclass", boxVerticalClass);
@@ -53,12 +90,15 @@ selectChosenNumber.forEach((number) => {
   });
 });
 
-
 const handleHighlightSystem = () => {
   const allBoxesElementGrab = document.getElementsByClassName("grid__box__no");
   for (let i = 0; i < allBoxesElementGrab.length; i++) {
     // if the classes contain the combination of rows and columns selected in event listener, make background grey, otherwise make background white
-    if (allBoxesElementGrab[i].classList.contains(boxHorizontalClass) || allBoxesElementGrab[i].classList.contains(boxtotalClass) ||allBoxesElementGrab[i].classList.contains(boxVerticalClass)) {
+    if (
+      allBoxesElementGrab[i].classList.contains(boxHorizontalClass) ||
+      allBoxesElementGrab[i].classList.contains(boxtotalClass) ||
+      allBoxesElementGrab[i].classList.contains(boxVerticalClass)
+    ) {
       allBoxesElementGrab[i].style.backgroundColor = "grey";
     } else allBoxesElementGrab[i].style.backgroundColor = "white";
   }
@@ -80,7 +120,14 @@ const checkMatch = () => {
   }
 };
 
+const handleDelete = () => {
+  inputtedNumber.innerHTML = " ";
+};
+
 // event listeners
 selectChosenBox.forEach((box) => {
   box.addEventListener("click", handleHighlightSystem);
 });
+
+selectDelete.addEventListener("click", handleDelete);
+restartButton.addEventListener("click", handleRestart);
