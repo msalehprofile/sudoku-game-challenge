@@ -1,4 +1,6 @@
-export const renderHard = `<div class="grid__box">
+export const renderHard = `
+<button class="grid__box--start" >Start</button>
+<div class="grid__box">
         <div id="16" class="L1 R1 B1 grid__box__no">6</div>
         <div id="17" class="L1 R2 B1 grid__box__no">7</div>
         <div id="12" class="L1 R3 B1 grid__box__no">2</div>

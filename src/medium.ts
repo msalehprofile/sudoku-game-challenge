@@ -1,5 +1,7 @@
 export const renderMedium = 
-    `<div class="grid__box">
+    `
+    <button class="grid__box--start" >Start</button>
+    <div class="grid__box">
         <div id="19" class="L1 R1 B1 grid__box__no">9</div>
         <div id="14" class="L1 R2 B1 grid__box__no"></div>
         <div id="18" class="L1 R3 B1 grid__box__no"></div>
