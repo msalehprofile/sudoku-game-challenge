@@ -4,6 +4,22 @@
     box-sizing: border-box;
 }
 
+.navigation__errors {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+
+    &--error-title {
+        border: 1px solid red;
+        padding: 5px;
+    }
+
+    &--error-count {
+        border: 1px solid red;
+        padding: 5px;
+    }
+}
+
 .screen {
     display: flex;
     flex-direction: column;
@@ -25,21 +41,7 @@
             }
         }
 
-        .navigation__errors {
-            display: flex;
-            justify-content: center;
-            margin: 10px;
-
-            &--error-title {
-                border: 1px solid red;
-                padding: 5px;
-            }
-
-            &--error-count {
-                border: 1px solid red;
-                padding: 5px;
-            }
-        }
+        
     }
 
     &__grid {

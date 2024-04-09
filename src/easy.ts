@@ -1,6 +1,12 @@
 export const renderEasy = () => {
     return `
-    <button class="grid__box--start" >Start</button>
+    <section class="navigation__errors">
+        <div class="navigation__errors--error-title">Errors:</div>
+        <div class="navigation__errors--error-count">0</div>
+</section>
+
+<main class="screen__grid">
+<button class="grid__box--start" >Start</button>
     <div class="grid__box">
         <div id="16" class="L1 R1 B1 grid__box__no">6</div>
         <div id="17" class="L1 R2 B1 grid__box__no">7</div>
@@ -107,5 +113,22 @@ export const renderEasy = () => {
         <div id="91" class="L9 R7 B9 grid__box__no">1</div>
         <div id="99" class="L9 R8 B9 grid__box__no">9</div>
         <div id="96" class="L9 R9 B9 grid__box__no">6</div>
-    </div>`;
+    </div>
+    </main>
+
+    <selection class="screen__erase">
+        <button class="screen__erase--delete">Delete</button>
+    </selection>
+
+    <selection class="numbers">
+        <h1 id="1" class="numbers__single">1</h1>
+        <h1 id="2" class="numbers__single">2</h1>
+        <h1 id="3" class="numbers__single">3</h1>
+        <h1 id="4" class="numbers__single">4</h1>
+        <h1 id="5" class="numbers__single">5</h1>
+        <h1 id="6" class="numbers__single">6</h1>
+        <h1 id="7" class="numbers__single">7</h1>
+        <h1 id="8" class="numbers__single">8</h1>
+        <h1 id="9" class="grid__box__no">9</h1>
+    </selection>`;
 }
