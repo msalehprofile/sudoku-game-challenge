@@ -1,9 +1,22 @@
+import "./styling.scss";
+
 export const renderEasy = () => {
     return `
-    <section class="navigation__errors">
-        <div class="navigation__errors--error-title">Errors:</div>
-        <div class="navigation__errors--error-count">0</div>
-</section>
+    <header>
+        <h1 class="screen__game-name">SUDOKU</h1>
+    </header>
+    
+    <section class="navigation">
+        <button class="nagivation__home">Home</button>
+        <div class="navigation__level">
+            <div class="navigation__level--title">Level:</div>
+            <div class="navigation__level--level">Easy</div>
+        </div>
+        <div class="navigation__errors">
+            <div class="navigation__errors--error-title">Errors:</div>
+            <div class="navigation__errors--error-count">0</div>
+        </div>
+    </section>
 
 <main class="screen__grid">
 <button class="grid__box--start" >Start</button>
@@ -116,8 +129,10 @@ export const renderEasy = () => {
     </div>
     </main>
 
-    <selection class="screen__erase">
-        <button class="screen__erase--delete">Delete</button>
+    <selection class="screen__edit">
+        <button class="screen__edit--delete">Delete</button>
+        <button id="restart" class="screen__edit--restart">Restart</button>
+        <button id="finish" class="screen__edit--finish">Finish</button>
     </selection>
 
     <selection class="numbers">
@@ -131,4 +146,4 @@ export const renderEasy = () => {
         <h1 id="8" class="numbers__single">8</h1>
         <h1 id="9" class="grid__box__no">9</h1>
     </selection>`;
-}
+};

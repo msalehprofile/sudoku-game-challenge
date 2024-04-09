@@ -1,35 +1,31 @@
 import { renderEasy } from "./easy";
 import { renderMedium } from "./medium";
 import { renderHard } from "./hard";
-import { stringify } from "querystring";
 
 const levelButtonSelection = document.querySelectorAll<HTMLButtonElement>(
   ".navigation__difficulty--button"
 );
-const sodukoGridHTML = document.querySelector(".game__hold");
-const restartButton = document.querySelector(".navigation__restart");
-const loadedGame = document.querySelector(".game__hold")
+const screenLayoutHTML = document.querySelector(".screen");
 
-if (
-  !levelButtonSelection ||
-  !sodukoGridHTML ||
-  !restartButton || !loadedGame
-) {
+const loadedGame = document.querySelector(".screen");
+
+if (!levelButtonSelection || !screenLayoutHTML || !loadedGame) {
   throw new Error("Issue With Selector");
 }
 
 let selectedLevel = "";
-
+let originalHTML = screenLayoutHTML.innerHTML
+console.log(originalHTML)
 
 levelButtonSelection.forEach((level) => {
   level.addEventListener("click", () => {
     selectedLevel = String(level.getAttribute("id"));
     if (selectedLevel === "easy") {
-      sodukoGridHTML.innerHTML = renderEasy();
+      screenLayoutHTML.innerHTML = renderEasy();
     } else if (selectedLevel === "medium") {
-      sodukoGridHTML.innerHTML = renderMedium;
+      screenLayoutHTML.innerHTML = renderMedium;
     } else if (selectedLevel === "hard") {
-      sodukoGridHTML.innerHTML = renderHard;
+      screenLayoutHTML.innerHTML = renderHard;
     }
     handleRestart();
   });
@@ -37,33 +33,38 @@ levelButtonSelection.forEach((level) => {
 
 const handleRestart = () => {
   if (selectedLevel === "easy") {
-    sodukoGridHTML.innerHTML = renderEasy();
-
+    screenLayoutHTML.innerHTML = renderEasy();
   } else if (selectedLevel === "medium") {
-    sodukoGridHTML.innerHTML = renderMedium;
+    screenLayoutHTML.innerHTML = renderMedium;
   } else if (selectedLevel === "hard") {
-    sodukoGridHTML.innerHTML = renderHard;
+    screenLayoutHTML.innerHTML = renderHard;
   }
 };
 
 const handleGame = (event: Event) => {
-  const target = event.target as HTMLButtonElement
+  const target = event.target as HTMLButtonElement;
   if (target.matches(".grid__box--start")) {
-
+    const restartButton = document.querySelector(".screen__edit--restart");
     const selectChosenBox = document.querySelectorAll(".grid__box__no");
     const selectChosenNumber = document.querySelectorAll(".numbers__single");
     const errorCount = document.querySelector<HTMLDivElement>(
       ".navigation__errors--error-count"
     );
     const selectDelete = document.querySelector<HTMLButtonElement>(
-      ".screen__erase--delete"
+      ".screen__edit--delete"
     );
+    const finishButton = document.querySelector(".screen__edit--finish");
+    const goBackButton = document.querySelector(".nagivation__home");
 
     if (
       !selectChosenBox ||
       !selectChosenNumber ||
       !errorCount ||
-      !selectDelete 
+      !selectDelete ||
+      !restartButton ||
+      !restartButton ||
+      !finishButton ||
+      !goBackButton
     ) {
       throw new Error("Issue With Selector");
     }
@@ -75,29 +76,20 @@ const handleGame = (event: Event) => {
     let boxVerticalClass = "";
     let boxtotalClass = "";
 
+
     levelButtonSelection.forEach((level) => {
       level.addEventListener("click", () => {
         selectedLevel = String(level.getAttribute("id"));
         if (selectedLevel === "easy") {
-          sodukoGridHTML.innerHTML = renderEasy();
+          screenLayoutHTML.innerHTML = renderEasy();
         } else if (selectedLevel === "medium") {
-          sodukoGridHTML.innerHTML = renderMedium;
+          screenLayoutHTML.innerHTML = renderMedium;
         } else if (selectedLevel === "hard") {
-          sodukoGridHTML.innerHTML = renderHard;
+          screenLayoutHTML.innerHTML = renderHard;
         }
         handleRestart();
       });
     });
-
-    const handleRestart = () => {
-      if (selectedLevel === "easy") {
-        sodukoGridHTML.innerHTML = renderEasy();
-      } else if (selectedLevel === "medium") {
-        sodukoGridHTML.innerHTML = renderMedium;
-      } else if (selectedLevel === "hard") {
-        sodukoGridHTML.innerHTML = renderHard;
-      }
-    };
 
     // gets information stored about the box user selected
     selectChosenBox.forEach((box) => {
@@ -108,14 +100,10 @@ const handleGame = (event: Event) => {
         boxHorizontalClass = String(box.getAttribute("class")).slice(0, 2);
         boxtotalClass = String(box.getAttribute("class")).slice(6, 8);
         box.getAttribute("class");
-
+        console.log("this is the box HTML", boxId);
         boxValue = boxId.slice(1);
-        console.log("this is the boxclass", boxVerticalClass);
-        console.log("this is the boxid", boxId);
-        console.log("this is the numberid", numberId);
         checkMatch();
         handleHighlightSystem();
-        handleDelete()
       });
     });
 
@@ -123,7 +111,6 @@ const handleGame = (event: Event) => {
     selectChosenNumber.forEach((number) => {
       number.addEventListener("click", () => {
         numberId = String(number.getAttribute("id"));
-        console.log(numberId);
         checkMatch();
       });
     });
@@ -161,8 +148,18 @@ const handleGame = (event: Event) => {
           inputtedNumber.innerHTML = numberId;
           inputtedNumber.style.color = "red";
           errorCount.innerHTML = String(Number(errorCount.innerHTML) + 1);
-          
         }
+      }
+    };
+
+    // restarts the game
+    const handleRestart = () => {
+      if (selectedLevel === "easy") {
+        screenLayoutHTML.innerHTML = renderEasy();
+      } else if (selectedLevel === "medium") {
+        screenLayoutHTML.innerHTML = renderMedium;
+      } else if (selectedLevel === "hard") {
+        screenLayoutHTML.innerHTML = renderHard;
       }
     };
 
@@ -174,20 +171,58 @@ const handleGame = (event: Event) => {
       }
     };
 
+    //handle end of game
+    const handleEndGame = () => {
+      let finishLevel =
+        selectedLevel.slice(0, 1).toUpperCase() + selectedLevel.slice(1);
+
+      if (errorCount.innerHTML === "0") {
+        screenLayoutHTML.innerHTML = `    
+        <header>
+          <h1 class="result-card">Well Done!</h1>
+          <p class="result-card__level">You Completed the ${finishLevel} Level</p>
+          <p class="result-card__errors">Amazing, you made no errors!</p>
+          <button class="result-card__home">Home</button>
+        </header>`;
+      } else if (
+        errorCount.innerHTML === "1" ||
+        errorCount.innerHTML === "2" ||
+        errorCount.innerHTML === "3"
+      ) {
+        let totalErrors = errorCount.innerHTML;
+        screenLayoutHTML.innerHTML = `    
+        <header>
+          <h1 class="result-card">Well Done!</h1>
+          <p class="result-card__level">You Completed the ${finishLevel} Level</p>
+          <p class="result-card__errors">You only made ${totalErrors} errors!</p>
+          <button class="result-card__home">Home</button>
+        </header>`;
+      } else {
+        let totalErrors = errorCount.innerHTML;
+        screenLayoutHTML.innerHTML = `    
+        <header class="result-card">
+          <h1 class="result-card__congrats">Well Done!</h1>
+          <p class="result-card__level">You Completed the ${finishLevel} Level</p>
+          <p class="result-card__errors">You made ${totalErrors} errors, try again!</p>
+          <button class="result-card__home">Home</button>
+        </header>`;
+      }
+    };
+
+    const handleGoHome = () => {
+      screenLayoutHTML.innerHTML = `${originalHTML}`
+    };
+
     // event listeners
     selectChosenBox.forEach((box) => {
       box.addEventListener("click", handleHighlightSystem);
     });
     selectDelete.addEventListener("click", handleDelete);
+    restartButton.addEventListener("click", handleRestart);
+    finishButton.addEventListener("click", handleEndGame);
+    goBackButton.addEventListener("click", handleGoHome);
   }
-
-
-}
+};
 // event listeners
-restartButton.addEventListener("click", handleRestart);
-loadedGame.addEventListener("click", handleGame)
 
-
-
-    
-
+loadedGame.addEventListener("click", handleGame);

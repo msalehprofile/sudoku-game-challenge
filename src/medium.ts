@@ -1,8 +1,18 @@
 export const renderMedium = 
     `
-    <section class="navigation__errors">
-        <div class="navigation__errors--error-title">Errors:</div>
-        <div class="navigation__errors--error-count">0</div>
+    <header>
+        <h1 class="screen__game-name">SUDOKU</h1>
+    </header>
+
+    <section class="navigation">
+        <div class="navigation__level">
+            <div class="navigation__level--title">Level:</div>
+            <div class="navigation__level--level">Meduim</div>
+        </div>
+        <div class="navigation__errors">
+            <div class="navigation__errors--error-title">Errors:</div>
+            <div class="navigation__errors--error-count">0</div>
+        </div>
     </section>
 
     <main class="screen__grid">
@@ -116,8 +126,10 @@ export const renderMedium =
     </div>
     </main>
 
-    <selection class="screen__erase">
-        <button class="screen__erase--delete">Delete</button>
+    <selection class="screen__edit">
+        <button class="screen__edit--delete">Delete</button>
+        <button id="restart" class="screen__edit--restart">Restart</button>
+        <button id="finish" class="screen__edit--finish">Finish</button>
     </selection>
 
     <selection class="numbers">
