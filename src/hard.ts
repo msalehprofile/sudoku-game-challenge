@@ -4,6 +4,7 @@ export const renderHard = `
 </header>
 
 <section class="navigation">
+<button class="nagivation__home">Home</button>
 <div class="navigation__level">
     <div class="navigation__level--title">Level:</div>
     <div class="navigation__level--level">Hard</div>

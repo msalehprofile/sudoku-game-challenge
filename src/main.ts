@@ -14,8 +14,8 @@ if (!levelButtonSelection || !screenLayoutHTML || !loadedGame) {
 }
 
 let selectedLevel = "";
-let originalHTML = screenLayoutHTML.innerHTML
-console.log(originalHTML)
+let originalHTML = screenLayoutHTML.innerHTML;
+console.log(originalHTML);
 
 levelButtonSelection.forEach((level) => {
   level.addEventListener("click", () => {
@@ -43,7 +43,7 @@ const handleRestart = () => {
 
 const handleGame = (event: Event) => {
   const target = event.target as HTMLButtonElement;
-  if (target.matches(".grid__box--start")) {
+  if (target.matches(".grid__box--start") || target.matches(".nagivation__home")) {
     const restartButton = document.querySelector(".screen__edit--restart");
     const selectChosenBox = document.querySelectorAll(".grid__box__no");
     const selectChosenNumber = document.querySelectorAll(".numbers__single");
@@ -75,7 +75,6 @@ const handleGame = (event: Event) => {
     let boxHorizontalClass = "";
     let boxVerticalClass = "";
     let boxtotalClass = "";
-
 
     levelButtonSelection.forEach((level) => {
       level.addEventListener("click", () => {
@@ -210,7 +209,7 @@ const handleGame = (event: Event) => {
     };
 
     const handleGoHome = () => {
-      screenLayoutHTML.innerHTML = `${originalHTML}`
+      window.location.href = "index.html";
     };
 
     // event listeners
