@@ -34,7 +34,7 @@ const handleGame = (event: Event) => {
   if (
     target.matches("#easy") ||
     target.matches("#medium") ||
-    target.matches("#hard")
+    target.matches("#hard") || target.matches(".screen__edit--restart") || target.matches(".screen__edit--delete")
   ) {
     const restartButton = document.querySelector(".screen__edit--restart");
     const selectChosenBox = document.querySelectorAll(".grid__box__no");
@@ -68,6 +68,7 @@ const handleGame = (event: Event) => {
     let boxVerticalClass = "";
     let boxtotalClass = "";
     let boxeditable = "";
+    let boxClass = "";
 
     // gets information stored about the box user selected
     selectChosenBox.forEach((box) => {
@@ -77,7 +78,7 @@ const handleGame = (event: Event) => {
         boxVerticalClass = String(box.getAttribute("class")).slice(3, 5);
         boxHorizontalClass = String(box.getAttribute("class")).slice(0, 2);
         boxtotalClass = String(box.getAttribute("class")).slice(6, 8);
-        box.getAttribute("class");
+        boxClass = String(box.getAttribute("class"));
         boxValue = boxId.slice(1, 2);
         boxeditable = boxId.slice(2);
         checkMatch();
@@ -97,6 +98,7 @@ const handleGame = (event: Event) => {
     const handleHighlightSystem = () => {
       const allBoxesElementGrab =
         document.getElementsByClassName("grid__box__no");
+
       for (let i = 0; i < allBoxesElementGrab.length; i++) {
         // if the classes contain the combination of rows and columns selected in event listener, make background grey, otherwise make background white
         if (
@@ -104,9 +106,11 @@ const handleGame = (event: Event) => {
           allBoxesElementGrab[i].classList.contains(boxtotalClass) ||
           allBoxesElementGrab[i].classList.contains(boxVerticalClass)
         ) {
-          allBoxesElementGrab[i].style.backgroundColor = "grey";
+          allBoxesElementGrab[i].style.backgroundColor = "#D4BBF9";
         } else allBoxesElementGrab[i].style.backgroundColor = "white";
       }
+
+
     };
 
     // check if the number player selected matches the correct answer
@@ -115,7 +119,7 @@ const handleGame = (event: Event) => {
         let inputtedNumber = document.getElementById(boxId);
         if (inputtedNumber != null) {
           inputtedNumber.innerHTML = numberId;
-          inputtedNumber.style.color = "blue";
+          inputtedNumber.style.color = "#374785";
           console.log(inputtedNumber);
         }
       } else if (numberId === " " || boxId === " ") {
@@ -124,7 +128,7 @@ const handleGame = (event: Event) => {
         let inputtedNumber = document.getElementById(boxId);
         if (inputtedNumber != null) {
           inputtedNumber.innerHTML = numberId;
-          inputtedNumber.style.color = "red";
+          inputtedNumber.style.color = "#DC541C";
           errorCount.innerHTML = String(Number(errorCount.innerHTML) + 1);
         }
       }
@@ -194,7 +198,7 @@ const handleGame = (event: Event) => {
     const handleFinalGoHome = (event: Event) => {
       const target = event.target as HTMLButtonElement;
       if (target.matches(".screen__edit--finish")) {
-        const goHomeButton = document.querySelector(".result-card__home");
+        const goHomeButton = document.querySelector(".result__home");
 
         if (!goHomeButton) {
           throw new Error("issue with Home button");

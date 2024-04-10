@@ -1,0 +1,49 @@
+@use './variables' as *;
+
+// layout
+
+.result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .result-card {
+        text-align: center;
+        &__title {
+            padding: 210px 60px 100px;
+        }
+
+        &__congrats, &__level, &__errors  {
+            padding: 10px;
+        }
+    }
+
+    &__home {
+        margin: 100px;
+    }
+
+}
+
+// styling
+
+* {
+    font-family: $font-primary;
+}
+
+.result-card__title {
+    font-family: $font-logo;
+    font-size: 40px;
+}
+
+.result__home {
+    padding: 20px 10px;
+    font-size: $font-button-size;
+    border: 1px solid $color-buttons;
+    border-radius: 40px;
+    background-color: $color-buttons;
+
+    &:active {
+        background-color: darken($color-buttons, 10%)
+    }
+}
+

@@ -1,0 +1,52 @@
+@use './variables' as *;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+// layout for home screen
+.screen {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+
+    &__opening-name {
+        padding: calc(100vh/4) 60px 100px;
+    }
+
+    &__navigation {
+        .navigation__difficulty {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            &--button {
+                padding: 8px;
+                margin: 23px;
+                width: 100px;
+            }
+        }
+
+        
+    }
+}
+
+// home styling
+.screen__opening-name {
+    font-family: $font-logo;
+    font-size: 45px;
+}
+
+.navigation__difficulty--button {
+    border: 1px solid $color-buttons;
+    font-size: $font-button-size;
+    font-family: $font-primary;
+    border-radius: 20px;
+    background-color: $color-buttons;
+
+    &:active {
+        background-color: darken($color-buttons, 10%)
+    }
+}
