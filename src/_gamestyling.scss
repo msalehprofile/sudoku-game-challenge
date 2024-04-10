@@ -1,0 +1,37 @@
+@use './variables' as *;
+
+* {
+    font-family: $font-primary;
+}
+
+.screen__game-name {
+    font-family: $font-logo;
+    font-size: 40px;
+}
+
+.nagivation__home {
+    padding: 0px 10px;
+    border: 1px solid $color-buttons;
+    border-radius: 20px;
+    background-color: $color-buttons;
+
+    &:active {
+        background-color: darken($color-buttons, 10%)
+    }
+}
+
+.numbers__single, .grid__box__no, .navigation__errors--error-count  {
+    font-family: $font-numbers;
+    font-weight: 450;
+}
+
+.screen__edit--delete, .screen__edit--restart, .screen__edit--finish {
+    padding: 20px 10px;
+    border: 1px solid $color-game-buttons;
+    border-radius: 40px;
+    background-color: $color-game-buttons;
+
+    &:active {
+        background-color: darken($color-game-buttons, 10%)
+    }
+}
