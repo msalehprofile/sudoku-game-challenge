@@ -1,0 +1,21 @@
+.result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .result-card {
+        text-align: center;
+        &__title {
+            padding: 210px 60px 100px;
+        }
+
+        &__congrats, &__level, &__errors  {
+            padding: 10px;
+        }
+    }
+
+    &__home {
+        margin: 100px;
+    }
+
+}

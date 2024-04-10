@@ -6,7 +6,6 @@ const levelButtonSelection = document.querySelectorAll<HTMLButtonElement>(
   ".navigation__difficulty--button"
 );
 const screenLayoutHTML = document.querySelector(".screen");
-
 const loadedGame = document.querySelector(".screen");
 
 if (!levelButtonSelection || !screenLayoutHTML || !loadedGame) {
@@ -14,9 +13,8 @@ if (!levelButtonSelection || !screenLayoutHTML || !loadedGame) {
 }
 
 let selectedLevel = "";
-let originalHTML = screenLayoutHTML.innerHTML;
-console.log(originalHTML);
 
+// for each loop to render the level selected onto the screen
 levelButtonSelection.forEach((level) => {
   level.addEventListener("click", () => {
     selectedLevel = String(level.getAttribute("id"));
@@ -27,23 +25,17 @@ levelButtonSelection.forEach((level) => {
     } else if (selectedLevel === "hard") {
       screenLayoutHTML.innerHTML = renderHard;
     }
-    handleRestart();
   });
 });
 
-const handleRestart = () => {
-  if (selectedLevel === "easy") {
-    screenLayoutHTML.innerHTML = renderEasy();
-  } else if (selectedLevel === "medium") {
-    screenLayoutHTML.innerHTML = renderMedium;
-  } else if (selectedLevel === "hard") {
-    screenLayoutHTML.innerHTML = renderHard;
-  }
-};
-
+// function to handle game play
 const handleGame = (event: Event) => {
   const target = event.target as HTMLButtonElement;
-  if (target.matches(".grid__box--start") || target.matches(".nagivation__home")) {
+  if (
+    target.matches("#easy") ||
+    target.matches("#medium") ||
+    target.matches("#hard")
+  ) {
     const restartButton = document.querySelector(".screen__edit--restart");
     const selectChosenBox = document.querySelectorAll(".grid__box__no");
     const selectChosenNumber = document.querySelectorAll(".numbers__single");
@@ -75,20 +67,7 @@ const handleGame = (event: Event) => {
     let boxHorizontalClass = "";
     let boxVerticalClass = "";
     let boxtotalClass = "";
-
-    levelButtonSelection.forEach((level) => {
-      level.addEventListener("click", () => {
-        selectedLevel = String(level.getAttribute("id"));
-        if (selectedLevel === "easy") {
-          screenLayoutHTML.innerHTML = renderEasy();
-        } else if (selectedLevel === "medium") {
-          screenLayoutHTML.innerHTML = renderMedium;
-        } else if (selectedLevel === "hard") {
-          screenLayoutHTML.innerHTML = renderHard;
-        }
-        handleRestart();
-      });
-    });
+    let boxeditable = "";
 
     // gets information stored about the box user selected
     selectChosenBox.forEach((box) => {
@@ -99,8 +78,8 @@ const handleGame = (event: Event) => {
         boxHorizontalClass = String(box.getAttribute("class")).slice(0, 2);
         boxtotalClass = String(box.getAttribute("class")).slice(6, 8);
         box.getAttribute("class");
-        console.log("this is the box HTML", boxId);
-        boxValue = boxId.slice(1);
+        boxValue = boxId.slice(1, 2);
+        boxeditable = boxId.slice(2);
         checkMatch();
         handleHighlightSystem();
       });
@@ -165,51 +144,64 @@ const handleGame = (event: Event) => {
     // delete numbers from selected box
     const handleDelete = () => {
       let inputtedNumber = document.getElementById(boxId);
-      if (inputtedNumber != null) {
-        inputtedNumber.innerHTML = "";
+      
+      console.log("box is", inputtedNumber)
+      if (inputtedNumber != null && boxeditable === "H") {
+        inputtedNumber.innerHTML = inputtedNumber.innerHTML;
+      } else if (inputtedNumber != null) {
+        inputtedNumber.innerHTML = ""
       }
     };
+
+    // getting the HTML for the end screen
+    let totalErrors = errorCount.innerHTML;
+    let goodScore = "Amazing, you made no errors!";
+    let aveScore = `You only made ${totalErrors} errors!`;
+    let badScore = `You made ${totalErrors} errors, try again!`;
+
+    const returnFinalScoreMessage = (errors: string) => {
+      if (errors === "0") {
+        return goodScore;
+      } else if (errors === "1" || errors === "2" || errors === "3") {
+        return aveScore;
+      } else {
+        return badScore;
+      }
+    };
+    const finalScoreMessage = returnFinalScoreMessage(totalErrors);
 
     //handle end of game
     const handleEndGame = () => {
       let finishLevel =
         selectedLevel.slice(0, 1).toUpperCase() + selectedLevel.slice(1);
-
-      if (errorCount.innerHTML === "0") {
-        screenLayoutHTML.innerHTML = `    
-        <header>
-          <h1 class="result-card">Well Done!</h1>
-          <p class="result-card__level">You Completed the ${finishLevel} Level</p>
-          <p class="result-card__errors">Amazing, you made no errors!</p>
-          <button class="result-card__home">Home</button>
-        </header>`;
-      } else if (
-        errorCount.innerHTML === "1" ||
-        errorCount.innerHTML === "2" ||
-        errorCount.innerHTML === "3"
-      ) {
-        let totalErrors = errorCount.innerHTML;
-        screenLayoutHTML.innerHTML = `    
-        <header>
-          <h1 class="result-card">Well Done!</h1>
-          <p class="result-card__level">You Completed the ${finishLevel} Level</p>
-          <p class="result-card__errors">You only made ${totalErrors} errors!</p>
-          <button class="result-card__home">Home</button>
-        </header>`;
-      } else {
-        let totalErrors = errorCount.innerHTML;
-        screenLayoutHTML.innerHTML = `    
-        <header class="result-card">
-          <h1 class="result-card__congrats">Well Done!</h1>
-          <p class="result-card__level">You Completed the ${finishLevel} Level</p>
-          <p class="result-card__errors">You made ${totalErrors} errors, try again!</p>
-          <button class="result-card__home">Home</button>
-        </header>`;
-      }
+      screenLayoutHTML.innerHTML = `<header class="result">
+            <h1 class="result-card__title">SUDOKU</h1>
+            <section class="result-card">
+              <h1 class="result-card__congrats">Well Done!</h1>
+              <p class="result-card__level">You Completed the ${finishLevel} Level</p>
+              <p class="result-card__errors">${finalScoreMessage}</p>
+            </section>
+            <button class="result__home">Home</button>
+          </header>`;
     };
 
+    // handles the go back button on the game page
     const handleGoHome = () => {
       window.location.href = "index.html";
+    };
+
+    // handles the home button on the finishing page
+    const handleFinalGoHome = (event: Event) => {
+      const target = event.target as HTMLButtonElement;
+      if (target.matches(".screen__edit--finish")) {
+        const goHomeButton = document.querySelector(".result-card__home");
+
+        if (!goHomeButton) {
+          throw new Error("issue with Home button");
+        }
+
+        goHomeButton.addEventListener("click", handleGoHome);
+      }
     };
 
     // event listeners
@@ -220,8 +212,9 @@ const handleGame = (event: Event) => {
     restartButton.addEventListener("click", handleRestart);
     finishButton.addEventListener("click", handleEndGame);
     goBackButton.addEventListener("click", handleGoHome);
+    loadedGame.addEventListener("click", handleFinalGoHome);
   }
 };
-// event listeners
 
+// event listeners
 loadedGame.addEventListener("click", handleGame);
