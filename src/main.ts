@@ -97,7 +97,7 @@ const handleGame = (event: Event) => {
     // highlights the box user selected, and the range that cannot have the same number in
     const handleHighlightSystem = () => {
       const allBoxesElementGrab =
-        document.getElementsByClassName("grid__box__no");
+        Array.from(document.getElementsByClassName("grid__box__no")) as unknown as HTMLCollectionOf<HTMLElement>;
 
       for (let i = 0; i < allBoxesElementGrab.length; i++) {
         // if the classes contain the combination of rows and columns selected in event listener, make background grey, otherwise make background white
