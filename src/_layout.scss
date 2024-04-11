@@ -23,9 +23,11 @@
             justify-content: space-evenly;
 
             &--button {
+                color: $color-font-button;
                 padding: 8px;
                 margin: 23px;
                 width: 100px;
+                box-shadow: 0 0 8px 5px $color-buttons;
             }
         }
 

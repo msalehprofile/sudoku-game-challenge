@@ -10,7 +10,7 @@ export const renderMedium =
     <button class="nagivation__home">Home</button>
         <div class="navigation__level">
             <div class="navigation__level--title">Level:</div>
-            <div class="navigation__level--level">Meduim</div>
+            <div class="navigation__level--level">Medium</div>
         </div>
         <div class="navigation__errors">
             <div class="navigation__errors--error-title">Errors:</div>

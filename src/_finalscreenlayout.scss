@@ -7,19 +7,43 @@
     flex-direction: column;
     align-items: center;
 
+    &__title {
+        padding: 130px 60px 90px;
+    }
+
     .result-card {
         text-align: center;
-        &__title {
-            padding: 210px 60px 100px;
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-bottom: 10px;
+        grid-template-rows: 70px 30px;
+
+        &__paint {
+                width: 350px;
+                height: 200px;
+                grid-row: 1/4;
+                grid-column: 1;
+        }
+        
+        &__level {
+            grid-row: 2;
+            grid-column: 1;
+            z-index: 1;
         }
 
-        &__congrats, &__level, &__errors  {
+        &__errors  {
+            grid-row: 3;
+            grid-column: 1;
             padding: 10px;
+            z-index: 1;
         }
     }
 
     &__home {
         margin: 100px;
+        box-shadow: 0 0 8px 5px $color-buttons;
+        opacity: 0.9;
+        color: $color-font-button
     }
 
 }
@@ -30,9 +54,9 @@
     font-family: $font-primary;
 }
 
-.result-card__title {
-    font-family: $font-logo;
-    font-size: 40px;
+.result__title {
+    font-family: $font-congrats;
+    font-size: 60px;
 }
 
 .result__home {
