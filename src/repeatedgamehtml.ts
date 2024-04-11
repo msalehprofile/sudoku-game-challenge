@@ -14,4 +14,5 @@ export const endHTML = `<selection class="screen__edit">
 <h1 id="7" class="numbers__single">7</h1>
 <h1 id="8" class="numbers__single">8</h1>
 <h1 id="9" class="numbers__single">9</h1>
-</selection>`;
+</selection>
+</section>`;

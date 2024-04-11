@@ -89,5 +89,44 @@
     }
 }
 
+@media screen and (min-width:400px) {
+    .screen {
+
+        &__game-name {
+            text-align: center;
+            margin: 60px 20px 50px;
+        }
+
+        .screen__edit {
+            margin: 30px 0 40px;
+
+        }
+    }
+}
+
+@media screen and (min-width:770px) {
+    .screen {
+
+        &__game-name {
+            text-align: center;
+            margin: 40px 20px 30px;
+        }
+
+        .navigation {
+            width: 40%;
+        }
+
+        &__grid {
+            width: 40%;
+            height: 370px;
+        }
+
+        .screen__edit {
+            margin: 5px 0 10px;
+
+        }
+    }
+}
+
 
 

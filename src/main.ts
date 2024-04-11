@@ -154,7 +154,7 @@ const handleGame = (event: Event) => {
           handleFinalGoHome(event);
           console.log("this amount left", emptyBoxes);
         }
-      } else if (numberId === " " || boxId === " ") {
+      } else if (numberId === " " || boxId === " " || boxeditable === "H") {
         errorCount.innerHTML = errorCount.innerHTML;
       } else if (boxValue != numberId) {
         let inputtedNumber = document.getElementById(boxId);
