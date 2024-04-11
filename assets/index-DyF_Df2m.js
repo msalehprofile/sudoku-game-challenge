@@ -1,7 +1,7 @@
-(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const d of document.querySelectorAll('link[rel="modulepreload"]'))l(d);new MutationObserver(d=>{for(const _ of d)if(_.type==="childList")for(const c of _.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&l(c)}).observe(document,{childList:!0,subtree:!0});function t(d){const _={};return d.integrity&&(_.integrity=d.integrity),d.referrerPolicy&&(_.referrerPolicy=d.referrerPolicy),d.crossOrigin==="use-credentials"?_.credentials="include":d.crossOrigin==="anonymous"?_.credentials="omit":_.credentials="same-origin",_}function l(d){if(d.ep)return;d.ep=!0;const _=t(d);fetch(d.href,_)}})();const L=`<selection class="screen__edit">
+(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const _ of document.querySelectorAll('link[rel="modulepreload"]'))a(_);new MutationObserver(_=>{for(const d of _)if(d.type==="childList")for(const t of d.addedNodes)t.tagName==="LINK"&&t.rel==="modulepreload"&&a(t)}).observe(document,{childList:!0,subtree:!0});function b(_){const d={};return _.integrity&&(d.integrity=_.integrity),_.referrerPolicy&&(d.referrerPolicy=_.referrerPolicy),_.crossOrigin==="use-credentials"?d.credentials="include":_.crossOrigin==="anonymous"?d.credentials="omit":d.credentials="same-origin",d}function a(_){if(_.ep)return;_.ep=!0;const d=b(_);fetch(_.href,d)}})();const R=`<selection class="screen__edit">
 <button class="screen__edit--delete">Delete</button>
 <button id="restart" class="screen__edit--restart">Restart</button>
-<button id="finish" class="screen__edit--finish">Finish</button>
+
 </selection>
 
 <selection class="numbers">
@@ -14,7 +14,7 @@
 <h1 id="7" class="numbers__single">7</h1>
 <h1 id="8" class="numbers__single">8</h1>
 <h1 id="9" class="numbers__single">9</h1>
-</selection>`,M=()=>`
+</selection>`,T=()=>`
     <header>
         <h1 class="screen__game-name">SUDOKU</h1>
     </header>
@@ -82,15 +82,15 @@
     </div>
 
     <div class="grid__box">
-        <div id="54H" class="L4 R4 B5 grid__box__no">4</div>
-        <div id="51" class="L4 R5 B5 grid__box__no"></div>
-        <div id="55H" class="L4 R6 B5 grid__box__no">5</div>
-        <div id="59H" class="L5 R4 B5 grid__box__no">9</div>
-        <div id="52H" class="L5 R5 B5 grid__box__no">2</div>
-        <div id="58" class="L5 R6 B5 grid__box__no"></div>
-        <div id="57H" class="L6 R4 B5 grid__box__no">7</div>
-        <div id="56H" class="L6 R5 B5 grid__box__no">6</div>
-        <div id="53" class="L6 R6 B5 grid__box__no"></div>
+        <div id="59" class="L4 R4 B5 grid__box__no"></div>
+        <div id="56" class="L4 R5 B5 grid__box__no"></div>
+        <div id="52" class="L4 R6 B5 grid__box__no"></div>
+        <div id="53H" class="L5 R4 B5 grid__box__no">3</div>
+        <div id="57H" class="L5 R5 B5 grid__box__no">7</div>
+        <div id="54" class="L5 R6 B5 grid__box__no"></div>
+        <div id="51" class="L6 R4 B5 grid__box__no"></div>
+        <div id="58" class="L6 R5 B5 grid__box__no"></div>
+        <div id="55" class="L6 R6 B5 grid__box__no"></div>
     </div>
 
     <div class="grid__box">
@@ -142,7 +142,7 @@
     </div>
     </main>
 
-    ${L}`,p=`
+    ${R}`,A=`
     <header>
         <h1 class="screen__game-name">SUDOKU</h1>
     </header>
@@ -151,7 +151,7 @@
     <button class="nagivation__home">Home</button>
         <div class="navigation__level">
             <div class="navigation__level--title">Level:</div>
-            <div class="navigation__level--level">Meduim</div>
+            <div class="navigation__level--level">Medium</div>
         </div>
         <div class="navigation__errors">
             <div class="navigation__errors--error-title">Errors:</div>
@@ -269,7 +269,7 @@
     </div>
     </main>
 
-    ${L}`,T=`
+    ${R}`,q=`
 <header>
 <h1 class="screen__game-name">SUDOKU</h1>
 </header>
@@ -396,12 +396,13 @@
     </div>
     </main>
     
-    ${L}`,C=document.querySelectorAll(".navigation__difficulty--button"),r=document.querySelector(".screen"),x=document.querySelector(".screen");if(!C||!r||!x)throw new Error("Issue With Selector");let o="";C.forEach(a=>{a.addEventListener("click",()=>{o=String(a.getAttribute("id")),o==="easy"?r.innerHTML=M():o==="medium"?r.innerHTML=p:o==="hard"&&(r.innerHTML=T)})});const I=a=>{const s=a.target;if(s.matches("#easy")||s.matches("#medium")||s.matches("#hard")||s.matches(".screen__edit--restart")||s.matches(".screen__edit--delete")){const t=document.querySelector(".screen__edit--restart"),l=document.querySelectorAll(".grid__box__no"),d=document.querySelectorAll(".numbers__single"),_=document.querySelector(".navigation__errors--error-count"),c=document.querySelector(".screen__edit--delete"),B=document.querySelector(".screen__edit--finish"),R=document.querySelector(".nagivation__home");if(!l||!d||!_||!c||!t||!t||!B||!R)throw new Error("Issue With Selector");let n="",g="",e="",u="",H="",m="",h="";l.forEach(i=>{i.addEventListener("click",()=>{e=" ",n=String(i.getAttribute("id")),H=String(i.getAttribute("class")).slice(3,5),u=String(i.getAttribute("class")).slice(0,2),m=String(i.getAttribute("class")).slice(6,8),g=n.slice(1,2),h=n.slice(2),y(),f()})}),d.forEach(i=>{i.addEventListener("click",()=>{e=String(i.getAttribute("id")),y()})});const f=()=>{const i=Array.from(document.getElementsByClassName("grid__box__no"));for(let v=0;v<i.length;v++)i[v].classList.contains(u)||i[v].classList.contains(m)||i[v].classList.contains(H)?i[v].style.backgroundColor="#D4BBF9":i[v].style.backgroundColor="white"},y=()=>{if(g===e){let i=document.getElementById(n);i!=null&&(i.innerHTML=e,i.style.color="#374785",console.log(i))}else if(e===" "||n===" ")_.innerHTML=_.innerHTML;else if(g!=e){let i=document.getElementById(n);i!=null&&(i.innerHTML=e,i.style.color="#DC541C",_.innerHTML=String(Number(_.innerHTML)+1))}},q=()=>{o==="easy"?r.innerHTML=M():o==="medium"?r.innerHTML=p:o==="hard"&&(r.innerHTML=T)},A=()=>{let i=document.getElementById(n);console.log("box is",i),i!=null&&h==="H"?i.innerHTML=i.innerHTML:i!=null&&(i.innerHTML="")};let b=_.innerHTML,w="Amazing, you made no errors!",k=`You only made ${b} errors!`,D=`You made ${b} errors, try again!`;const O=(i=>i==="0"?w:i==="1"||i==="2"||i==="3"?k:D)(b),N=()=>{let i=o.slice(0,1).toUpperCase()+o.slice(1);r.innerHTML=`<header class="result">
-            <h1 class="result-card__title">SUDOKU</h1>
+    ${R}`,w=document.querySelectorAll(".navigation__difficulty--button"),r=document.querySelector(".screen"),u=document.querySelector(".screen");if(!w||!r||!u)throw new Error("Issue With Selector");let v="";w.forEach(c=>{c.addEventListener("click",()=>{v=String(c.getAttribute("id")),v==="easy"?r.innerHTML=T():v==="medium"?r.innerHTML=A:v==="hard"&&(r.innerHTML=q)})});const N=c=>{const o=c.target;if(o.matches("#easy")||o.matches("#medium")||o.matches("#hard")||o.matches(".screen__edit--restart")||o.matches(".screen__edit--delete")){const b=document.querySelector(".screen__edit--restart"),a=document.querySelectorAll(".grid__box__no"),_=document.querySelectorAll(".numbers__single"),d=document.querySelector(".navigation__errors--error-count"),t=document.querySelector(".screen__edit--delete"),H=document.querySelector(".nagivation__home");if(!a||!_||!d||!t||!b||!b||!H)throw new Error("Issue With Selector");let n="",x="",e="",m="",h="",f="",y="",L="";a.forEach(i=>{i.addEventListener("click",()=>{e=" ",n=String(i.getAttribute("id")),h=String(i.getAttribute("class")).slice(3,5),m=String(i.getAttribute("class")).slice(0,2),f=String(i.getAttribute("class")).slice(6,8),x=n.slice(1,2),y=n.slice(2),p(),E()})}),_.forEach(i=>{i.addEventListener("click",()=>{e=String(i.getAttribute("id")),p()})});const E=()=>{const i=Array.from(document.getElementsByClassName("grid__box__no"));for(let s=0;s<i.length;s++)i[s].classList.contains(m)||i[s].classList.contains(f)||i[s].classList.contains(h)?i[s].style.backgroundColor="#D4BBF9":i[s].style.backgroundColor="white"},p=()=>{if(x===e){let i=document.getElementById(n);if(i!=null){i.innerHTML=e,i.style.color="#374785",console.log(i);let s=0;const l=document.querySelectorAll(".grid__box__no");if(!l)throw new Error("issue with experi");for(let g=0;g<l.length;g++)l[g].innerHTML===""&&s++;if(s===0){const g=B(L);console.log(g);let D=v.slice(0,1).toUpperCase()+v.slice(1);r.innerHTML=`<header class="result">
+            <h1 class="result__title">Well done!</h1>
             <section class="result-card">
-              <h1 class="result-card__congrats">Well Done!</h1>
-              <p class="result-card__level">You Completed the ${i} Level</p>
-              <p class="result-card__errors">${O}</p>
+              <img class="result-card__paint"src="./src/neworange.png" alt="">
+
+              <p class="result-card__level">Difficulty: ${D}</p>
+              <p class="result-card__errors">${g}</p>
             </section>
             <button class="result__home">Home</button>
-          </header>`},S=()=>{window.location.href="index.html"},U=i=>{if(i.target.matches(".screen__edit--finish")){const E=document.querySelector(".result__home");if(!E)throw new Error("issue with Home button");E.addEventListener("click",S)}};l.forEach(i=>{i.addEventListener("click",f)}),c.addEventListener("click",A),t.addEventListener("click",q),B.addEventListener("click",N),R.addEventListener("click",S),x.addEventListener("click",U)}};x.addEventListener("click",I);
+          </header>`}M(c),console.log("this amount left",s)}}else if(e===" "||n===" ")d.innerHTML=d.innerHTML;else if(x!=e){let i=document.getElementById(n);i!=null&&(i.innerHTML=e,i.style.color="#DC541C",d.innerHTML=String(Number(d.innerHTML)+1),B(d.innerHTML))}},C=()=>{v==="easy"?r.innerHTML=T():v==="medium"?r.innerHTML=A:v==="hard"&&(r.innerHTML=q)},k=()=>{let i=document.getElementById(n);console.log("box is",i),i!=null&&y==="H"?i.innerHTML=i.innerHTML:i!=null&&(i.innerHTML="")},B=i=>(L=d.innerHTML,i==="0"?"You made no errors!":i==="1"?`You made ${L} error`:`You made ${L} errors`);console.log(B(L));const S=()=>{window.location.href="index.html"},M=i=>{if(i.target.matches(".numbers__single")){const l=document.querySelector(".result__home");l||console.log("error"),l&&l.addEventListener("click",S)}};a.forEach(i=>{i.addEventListener("click",E)}),t.addEventListener("click",k),b.addEventListener("click",C),H.addEventListener("click",S),u.addEventListener("click",M)}};u.addEventListener("click",N);
