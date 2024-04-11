@@ -1,7 +1,7 @@
 export const endHTML = `<selection class="screen__edit">
 <button class="screen__edit--delete">Delete</button>
 <button id="restart" class="screen__edit--restart">Restart</button>
-<button id="finish" class="screen__edit--finish">Finish</button>
+
 </selection>
 
 <selection class="numbers">
@@ -14,4 +14,4 @@ export const endHTML = `<selection class="screen__edit">
 <h1 id="7" class="numbers__single">7</h1>
 <h1 id="8" class="numbers__single">8</h1>
 <h1 id="9" class="numbers__single">9</h1>
-</selection>`
+</selection>`;

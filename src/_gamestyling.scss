@@ -14,6 +14,9 @@
     border: 1px solid $color-buttons;
     border-radius: 20px;
     background-color: $color-buttons;
+    color: $color-font-button;
+    box-shadow: 0 0 8px 5px $color-buttons;
+
 
     &:active {
         background-color: darken($color-buttons, 10%)
@@ -23,13 +26,20 @@
 .numbers__single, .grid__box__no, .navigation__errors--error-count  {
     font-family: $font-numbers;
     font-weight: 450;
+    color: $color-grid-numbers;
 }
 
-.screen__edit--delete, .screen__edit--restart, .screen__edit--finish {
+.numbers__single{
+    color: $colour-select-number;
+}
+
+.screen__edit--delete, .screen__edit--restart {
     padding: 20px 10px;
     border: 1px solid $color-game-buttons;
     border-radius: 40px;
     background-color: $color-game-buttons;
+    color: $color-font-button;
+    box-shadow: 0 0 8px 5px $color-game-buttons;
 
     &:active {
         background-color: darken($color-game-buttons, 10%)

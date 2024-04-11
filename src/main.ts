@@ -47,8 +47,8 @@ const handleGame = (event: Event) => {
     const selectDelete = document.querySelector<HTMLButtonElement>(
       ".screen__edit--delete"
     );
-    const finishButton = document.querySelector(".screen__edit--finish");
     const goBackButton = document.querySelector(".nagivation__home");
+
 
     if (
       !selectChosenBox ||
@@ -57,8 +57,8 @@ const handleGame = (event: Event) => {
       !selectDelete ||
       !restartButton ||
       !restartButton ||
-      !finishButton ||
-      !goBackButton
+      !goBackButton 
+
     ) {
       throw new Error("Issue With Selector");
     }
@@ -71,7 +71,6 @@ const handleGame = (event: Event) => {
     let boxtotalClass = "";
     let boxeditable = "";
     let totalErrors = "";
-    // let boxClass = "";
 
     // gets information stored about the box user selected
     selectChosenBox.forEach((box) => {
@@ -81,7 +80,6 @@ const handleGame = (event: Event) => {
         boxVerticalClass = String(box.getAttribute("class")).slice(3, 5);
         boxHorizontalClass = String(box.getAttribute("class")).slice(0, 2);
         boxtotalClass = String(box.getAttribute("class")).slice(6, 8);
-        // boxClass = String(box.getAttribute("class"));
         boxValue = boxId.slice(1, 2);
         boxeditable = boxId.slice(2);
         checkMatch();
@@ -133,7 +131,6 @@ const handleGame = (event: Event) => {
           }
 
           for (let i = 0; i < boxArr.length; i++) {
-            // console.log(boxArr[i].innerHTML)
             if (boxArr[i].innerHTML === "") {
               emptyBoxes++;
             }
@@ -144,15 +141,17 @@ const handleGame = (event: Event) => {
             let finishLevel =
               selectedLevel.slice(0, 1).toUpperCase() + selectedLevel.slice(1);
             screenLayoutHTML.innerHTML = `<header class="result">
-                  <h1 class="result-card__title">SUDOKU</h1>
-                  <section class="result-card">
-                    <h1 class="result-card__congrats">Well Done!</h1>
-                    <p class="result-card__level">You Completed the ${finishLevel} Level</p>
-                    <p class="result-card__errors">${finalScoreMessage}</p>
-                  </section>
-                  <button class="result__home">Home</button>
-                </header>`;
+            <h1 class="result__title">Well done!</h1>
+            <section class="result-card">
+              <img class="result-card__paint"src="./src/neworange.png" alt="">
+
+              <p class="result-card__level">Difficulty: ${finishLevel}</p>
+              <p class="result-card__errors">${finalScoreMessage}</p>
+            </section>
+            <button class="result__home">Home</button>
+          </header>`;
           }
+          handleFinalGoHome(event);
           console.log("this amount left", emptyBoxes);
         }
       } else if (numberId === " " || boxId === " ") {
@@ -204,24 +203,6 @@ const handleGame = (event: Event) => {
     };
     console.log(returnFinalScoreMessage(totalErrors));
 
-    //handle end of game
-    const handleEndGame = () => {
-      const finalScoreMessage = returnFinalScoreMessage(totalErrors);
-      console.log(finalScoreMessage);
-      let finishLevel =
-        selectedLevel.slice(0, 1).toUpperCase() + selectedLevel.slice(1);
-      screenLayoutHTML.innerHTML = `<header class="result">
-            <h1 class="result__title">Well done!</h1>
-            <section class="result-card">
-              <img class="result-card__paint"src="./src/orange paint.png" alt="">
-
-              <p class="result-card__level">Level completed: ${finishLevel}</p>
-              <p class="result-card__errors">${finalScoreMessage}</p>
-            </section>
-            <button class="result__home">Home</button>
-          </header>`;
-    };
-
     // handles the go back button on the game page
     const handleGoHome = () => {
       window.location.href = "index.html";
@@ -230,14 +211,16 @@ const handleGame = (event: Event) => {
     // handles the home button on the finishing page
     const handleFinalGoHome = (event: Event) => {
       const target = event.target as HTMLButtonElement;
+
       if (target.matches(".numbers__single")) {
         const goHomeButton = document.querySelector(".result__home");
-
         if (!goHomeButton) {
-          throw new Error("issue with Home button");
+          console.log("error");
         }
 
-        goHomeButton.addEventListener("click", handleGoHome);
+        if (goHomeButton) {
+        goHomeButton.addEventListener("click", handleGoHome)
+        };
       }
     };
 
@@ -247,7 +230,6 @@ const handleGame = (event: Event) => {
     });
     selectDelete.addEventListener("click", handleDelete);
     restartButton.addEventListener("click", handleRestart);
-    finishButton.addEventListener("click", handleEndGame);
     goBackButton.addEventListener("click", handleGoHome);
     loadedGame.addEventListener("click", handleFinalGoHome);
   }
