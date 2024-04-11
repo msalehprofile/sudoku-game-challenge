@@ -70,15 +70,15 @@ export const renderEasy = () => {
     </div>
 
     <div class="grid__box">
-        <div id="54H" class="L4 R4 B5 grid__box__no">4</div>
-        <div id="51" class="L4 R5 B5 grid__box__no"></div>
-        <div id="55H" class="L4 R6 B5 grid__box__no">5</div>
-        <div id="59H" class="L5 R4 B5 grid__box__no">9</div>
-        <div id="52H" class="L5 R5 B5 grid__box__no">2</div>
-        <div id="58" class="L5 R6 B5 grid__box__no"></div>
-        <div id="57H" class="L6 R4 B5 grid__box__no">7</div>
-        <div id="56H" class="L6 R5 B5 grid__box__no">6</div>
-        <div id="53" class="L6 R6 B5 grid__box__no"></div>
+        <div id="59" class="L4 R4 B5 grid__box__no"></div>
+        <div id="56" class="L4 R5 B5 grid__box__no"></div>
+        <div id="52" class="L4 R6 B5 grid__box__no"></div>
+        <div id="53H" class="L5 R4 B5 grid__box__no">3</div>
+        <div id="57H" class="L5 R5 B5 grid__box__no">7</div>
+        <div id="54" class="L5 R6 B5 grid__box__no"></div>
+        <div id="51" class="L6 R4 B5 grid__box__no"></div>
+        <div id="58" class="L6 R5 B5 grid__box__no"></div>
+        <div id="55" class="L6 R6 B5 grid__box__no"></div>
     </div>
 
     <div class="grid__box">

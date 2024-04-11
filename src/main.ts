@@ -34,7 +34,9 @@ const handleGame = (event: Event) => {
   if (
     target.matches("#easy") ||
     target.matches("#medium") ||
-    target.matches("#hard") || target.matches(".screen__edit--restart") || target.matches(".screen__edit--delete")
+    target.matches("#hard") ||
+    target.matches(".screen__edit--restart") ||
+    target.matches(".screen__edit--delete")
   ) {
     const restartButton = document.querySelector(".screen__edit--restart");
     const selectChosenBox = document.querySelectorAll(".grid__box__no");
@@ -68,7 +70,8 @@ const handleGame = (event: Event) => {
     let boxVerticalClass = "";
     let boxtotalClass = "";
     let boxeditable = "";
-    let boxClass = "";
+    let totalErrors = "";
+    // let boxClass = "";
 
     // gets information stored about the box user selected
     selectChosenBox.forEach((box) => {
@@ -78,7 +81,7 @@ const handleGame = (event: Event) => {
         boxVerticalClass = String(box.getAttribute("class")).slice(3, 5);
         boxHorizontalClass = String(box.getAttribute("class")).slice(0, 2);
         boxtotalClass = String(box.getAttribute("class")).slice(6, 8);
-        boxClass = String(box.getAttribute("class"));
+        // boxClass = String(box.getAttribute("class"));
         boxValue = boxId.slice(1, 2);
         boxeditable = boxId.slice(2);
         checkMatch();
@@ -96,8 +99,9 @@ const handleGame = (event: Event) => {
 
     // highlights the box user selected, and the range that cannot have the same number in
     const handleHighlightSystem = () => {
-      const allBoxesElementGrab =
-        Array.from(document.getElementsByClassName("grid__box__no")) as unknown as HTMLCollectionOf<HTMLElement>;
+      const allBoxesElementGrab = Array.from(
+        document.getElementsByClassName("grid__box__no")
+      ) as unknown as HTMLCollectionOf<HTMLElement>;
 
       for (let i = 0; i < allBoxesElementGrab.length; i++) {
         // if the classes contain the combination of rows and columns selected in event listener, make background grey, otherwise make background white
@@ -109,8 +113,6 @@ const handleGame = (event: Event) => {
           allBoxesElementGrab[i].style.backgroundColor = "#D4BBF9";
         } else allBoxesElementGrab[i].style.backgroundColor = "white";
       }
-
-
     };
 
     // check if the number player selected matches the correct answer
@@ -121,6 +123,37 @@ const handleGame = (event: Event) => {
           inputtedNumber.innerHTML = numberId;
           inputtedNumber.style.color = "#374785";
           console.log(inputtedNumber);
+
+          // checking how many empty boxes are left
+          let emptyBoxes = 0;
+          const boxArr = document.querySelectorAll(".grid__box__no");
+
+          if (!boxArr) {
+            throw new Error("issue with experi");
+          }
+
+          for (let i = 0; i < boxArr.length; i++) {
+            // console.log(boxArr[i].innerHTML)
+            if (boxArr[i].innerHTML === "") {
+              emptyBoxes++;
+            }
+          }
+          if (emptyBoxes === 0) {
+            const finalScoreMessage = returnFinalScoreMessage(totalErrors);
+            console.log(finalScoreMessage);
+            let finishLevel =
+              selectedLevel.slice(0, 1).toUpperCase() + selectedLevel.slice(1);
+            screenLayoutHTML.innerHTML = `<header class="result">
+                  <h1 class="result-card__title">SUDOKU</h1>
+                  <section class="result-card">
+                    <h1 class="result-card__congrats">Well Done!</h1>
+                    <p class="result-card__level">You Completed the ${finishLevel} Level</p>
+                    <p class="result-card__errors">${finalScoreMessage}</p>
+                  </section>
+                  <button class="result__home">Home</button>
+                </header>`;
+          }
+          console.log("this amount left", emptyBoxes);
         }
       } else if (numberId === " " || boxId === " ") {
         errorCount.innerHTML = errorCount.innerHTML;
@@ -130,6 +163,7 @@ const handleGame = (event: Event) => {
           inputtedNumber.innerHTML = numberId;
           inputtedNumber.style.color = "#DC541C";
           errorCount.innerHTML = String(Number(errorCount.innerHTML) + 1);
+          returnFinalScoreMessage(errorCount.innerHTML);
         }
       }
     };
@@ -148,41 +182,40 @@ const handleGame = (event: Event) => {
     // delete numbers from selected box
     const handleDelete = () => {
       let inputtedNumber = document.getElementById(boxId);
-      
-      console.log("box is", inputtedNumber)
+
+      console.log("box is", inputtedNumber);
       if (inputtedNumber != null && boxeditable === "H") {
         inputtedNumber.innerHTML = inputtedNumber.innerHTML;
       } else if (inputtedNumber != null) {
-        inputtedNumber.innerHTML = ""
+        inputtedNumber.innerHTML = "";
       }
     };
 
     // getting the HTML for the end screen
-    let totalErrors = errorCount.innerHTML;
-    let goodScore = "Amazing, you made no errors!";
-    let aveScore = `You only made ${totalErrors} errors!`;
-    let badScore = `You made ${totalErrors} errors, try again!`;
-
     const returnFinalScoreMessage = (errors: string) => {
+      totalErrors = errorCount.innerHTML;
       if (errors === "0") {
-        return goodScore;
-      } else if (errors === "1" || errors === "2" || errors === "3") {
-        return aveScore;
+        return "You made no errors!";
+      } else if (errors === "1") {
+        return `You made ${totalErrors} error`;
       } else {
-        return badScore;
+        return `You made ${totalErrors} errors`;
       }
     };
-    const finalScoreMessage = returnFinalScoreMessage(totalErrors);
+    console.log(returnFinalScoreMessage(totalErrors));
 
     //handle end of game
     const handleEndGame = () => {
+      const finalScoreMessage = returnFinalScoreMessage(totalErrors);
+      console.log(finalScoreMessage);
       let finishLevel =
         selectedLevel.slice(0, 1).toUpperCase() + selectedLevel.slice(1);
       screenLayoutHTML.innerHTML = `<header class="result">
-            <h1 class="result-card__title">SUDOKU</h1>
+            <h1 class="result__title">Well done!</h1>
             <section class="result-card">
-              <h1 class="result-card__congrats">Well Done!</h1>
-              <p class="result-card__level">You Completed the ${finishLevel} Level</p>
+              <img class="result-card__paint"src="./src/orange paint.png" alt="">
+
+              <p class="result-card__level">Level completed: ${finishLevel}</p>
               <p class="result-card__errors">${finalScoreMessage}</p>
             </section>
             <button class="result__home">Home</button>
@@ -197,7 +230,7 @@ const handleGame = (event: Event) => {
     // handles the home button on the finishing page
     const handleFinalGoHome = (event: Event) => {
       const target = event.target as HTMLButtonElement;
-      if (target.matches(".screen__edit--finish")) {
+      if (target.matches(".numbers__single")) {
         const goHomeButton = document.querySelector(".result__home");
 
         if (!goHomeButton) {
