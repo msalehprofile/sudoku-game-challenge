@@ -1,4 +1,4 @@
-(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const _ of document.querySelectorAll('link[rel="modulepreload"]'))a(_);new MutationObserver(_=>{for(const d of _)if(d.type==="childList")for(const t of d.addedNodes)t.tagName==="LINK"&&t.rel==="modulepreload"&&a(t)}).observe(document,{childList:!0,subtree:!0});function b(_){const d={};return _.integrity&&(d.integrity=_.integrity),_.referrerPolicy&&(d.referrerPolicy=_.referrerPolicy),_.crossOrigin==="use-credentials"?d.credentials="include":_.crossOrigin==="anonymous"?d.credentials="omit":d.credentials="same-origin",d}function a(_){if(_.ep)return;_.ep=!0;const d=b(_);fetch(_.href,d)}})();const R=`<selection class="screen__edit">
+(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const _ of document.querySelectorAll('link[rel="modulepreload"]'))a(_);new MutationObserver(_=>{for(const d of _)if(d.type==="childList")for(const t of d.addedNodes)t.tagName==="LINK"&&t.rel==="modulepreload"&&a(t)}).observe(document,{childList:!0,subtree:!0});function b(_){const d={};return _.integrity&&(d.integrity=_.integrity),_.referrerPolicy&&(d.referrerPolicy=_.referrerPolicy),_.crossOrigin==="use-credentials"?d.credentials="include":_.crossOrigin==="anonymous"?d.credentials="omit":d.credentials="same-origin",d}function a(_){if(_.ep)return;_.ep=!0;const d=b(_);fetch(_.href,d)}})();const u=`<selection class="screen__edit">
 <button class="screen__edit--delete">Delete</button>
 <button id="restart" class="screen__edit--restart">Restart</button>
 
@@ -14,135 +14,137 @@
 <h1 id="7" class="numbers__single">7</h1>
 <h1 id="8" class="numbers__single">8</h1>
 <h1 id="9" class="numbers__single">9</h1>
-</selection>`,T=()=>`
+</selection>
+</section>`,T=()=>`
     <header>
         <h1 class="screen__game-name">SUDOKU</h1>
     </header>
     
-    <section class="navigation">
-        <button class="nagivation__home">Home</button>
-        <div class="navigation__level">
-            <div class="navigation__level--title">Level:</div>
-            <div class="navigation__level--level">Easy</div>
-        </div>
-        <div class="navigation__errors">
-            <div class="navigation__errors--error-title">Errors:</div>
-            <div class="navigation__errors--error-count">0</div>
-        </div>
-    </section>
+        <navigation class="navigation">
+            <button class="nagivation__home">Home</button>
+            <div class="navigation__level">
+                <div class="navigation__level--title">Level:</div>
+                <div class="navigation__level--level">Easy</div>
+            </div>
+            <div class="navigation__errors">
+                <div class="navigation__errors--error-title">Errors:</div>
+                <div class="navigation__errors--error-count">0</div>
+            </div>
+        </navigation>
 
-<main class="screen__grid">
+        <main class="screen__grid">
+            <div class="grid__box">
+                <div id="16H" class="L1 R1 B1 grid__box__no">6</div>
+                <div id="17H" class="L1 R2 B1 grid__box__no">7</div>
+                <div id="12H" class="L1 R3 B1 grid__box__no">2</div>
+                <div id="18" class="L2 R1 B1 grid__box__no"></div>
+                <div id="13H" class="L2 R2 B1 grid__box__no">3</div>
+                <div id="11H" class="L2 R3 B1 grid__box__no">1</div>
+                <div id="15" class="L3 R1 B1 grid__box__no"></div>
+                <div id="14H" class="L3 R2 B1 grid__box__no">4</div>
+                <div id="19" class="L3 R3 B1 grid__box__no"></div>
+            </div>
 
-    <div class="grid__box">
-        <div id="16H" class="L1 R1 B1 grid__box__no">6</div>
-        <div id="17H" class="L1 R2 B1 grid__box__no">7</div>
-        <div id="12H" class="L1 R3 B1 grid__box__no">2</div>
-        <div id="18" class="L2 R1 B1 grid__box__no"></div>
-        <div id="13H" class="L2 R2 B1 grid__box__no">3</div>
-        <div id="11H" class="L2 R3 B1 grid__box__no">1</div>
-        <div id="15" class="L3 R1 B1 grid__box__no"></div>
-        <div id="14H" class="L3 R2 B1 grid__box__no">4</div>
-        <div id="19" class="L3 R3 B1 grid__box__no"></div>
-    </div>
+            <div class="grid__box">
+                <div id="25" class="L1 R4 B2 grid__box__no"></div>
+                <div id="23" class="L1 R5 B2 grid__box__no"></div>
+                <div id="21H" class="L1 R6 B2 grid__box__no">1</div>
+                <div id="26" class="L2 R4 B2 grid__box__no"></div>
+                <div id="24" class="L2 R5 B2 grid__box__no"></div>
+                <div id="29" class="L2 R6 B2 grid__box__no"></div>
+                <div id="28" class="L3 R4 B2 grid__box__no"></div>
+                <div id="22H" class="L3 R5 B2 grid__box__no">2</div>
+                <div id="27" class="L3 R6 B2 grid__box__no"></div>
+            </div>
 
-    <div class="grid__box">
-        <div id="25" class="L1 R4 B2 grid__box__no"></div>
-        <div id="23" class="L1 R5 B2 grid__box__no"></div>
-        <div id="21H" class="L1 R6 B2 grid__box__no">1</div>
-        <div id="26" class="L2 R4 B2 grid__box__no"></div>
-        <div id="24" class="L2 R5 B2 grid__box__no"></div>
-        <div id="29" class="L2 R6 B2 grid__box__no"></div>
-        <div id="28" class="L3 R4 B2 grid__box__no"></div>
-        <div id="22H" class="L3 R5 B2 grid__box__no">2</div>
-        <div id="27" class="L3 R6 B2 grid__box__no"></div>
-    </div>
+            <div class="grid__box">
+                <div id="39H" class="L1 R7 B3 grid__box__no">9</div>
+                <div id="38H" class="L1 R8 B3 grid__box__no">8</div>
+                <div id="34H" class="L1 R9 B3 grid__box__no">4</div>
+                <div id="32" class="L2 R7 B3 grid__box__no"></div>
+                <div id="35" class="L2 R8 B3 grid__box__no"></div>
+                <div id="37" class="L2 R9 B3 grid__box__no"></div>
+                <div id="36" class="L3 R7 B3 grid__box__no"></div>
+                <div id="31" class="L3 R8 B3 grid__box__no"></div>
+                <div id="33H" class="L3 R9 B3 grid__box__no">3</div>
+            </div>
 
-    <div class="grid__box">
-        <div id="39H" class="L1 R7 B3 grid__box__no">9</div>
-        <div id="38H" class="L1 R8 B3 grid__box__no">8</div>
-        <div id="34H" class="L1 R9 B3 grid__box__no">4</div>
-        <div id="32" class="L2 R7 B3 grid__box__no"></div>
-        <div id="35" class="L2 R8 B3 grid__box__no"></div>
-        <div id="37" class="L2 R9 B3 grid__box__no"></div>
-        <div id="36" class="L3 R7 B3 grid__box__no"></div>
-        <div id="31" class="L3 R8 B3 grid__box__no"></div>
-        <div id="33H" class="L3 R9 B3 grid__box__no">3</div>
-    </div>
+            <div class="grid__box">
+                <div id="44H" class="L4 R1 B4 grid__box__no">4</div>
+                <div id="41" class="L4 R2 B4 grid__box__no"></div>
+                <div id="45H" class="L4 R3 B4 grid__box__no">5</div>
+                <div id="49H" class="L5 R1 B4 grid__box__no">9</div>
+                <div id="42H" class="L5 R2 B4 grid__box__no">2</div>
+                <div id="48" class="L5 R3 B4 grid__box__no"></div>
+                <div id="47H" class="L6 R1 B4 grid__box__no">7</div>
+                <div id="46H" class="L6 R2 B4 grid__box__no">6</div>
+                <div id="43" class="L6 R3 B4 grid__box__no"></div>
+            </div>
 
-    <div class="grid__box">
-        <div id="44H" class="L4 R1 B4 grid__box__no">4</div>
-        <div id="41" class="L4 R2 B4 grid__box__no"></div>
-        <div id="45H" class="L4 R3 B4 grid__box__no">5</div>
-        <div id="49H" class="L5 R1 B4 grid__box__no">9</div>
-        <div id="42H" class="L5 R2 B4 grid__box__no">2</div>
-        <div id="48" class="L5 R3 B4 grid__box__no"></div>
-        <div id="47H" class="L6 R1 B4 grid__box__no">7</div>
-        <div id="46H" class="L6 R2 B4 grid__box__no">6</div>
-        <div id="43" class="L6 R3 B4 grid__box__no"></div>
-    </div>
+            <div class="grid__box">
+                <div id="59" class="L4 R4 B5 grid__box__no"></div>
+                <div id="56" class="L4 R5 B5 grid__box__no"></div>
+                <div id="52" class="L4 R6 B5 grid__box__no"></div>
+                <div id="53H" class="L5 R4 B5 grid__box__no">3</div>
+                <div id="57H" class="L5 R5 B5 grid__box__no">7</div>
+                <div id="54" class="L5 R6 B5 grid__box__no"></div>
+                <div id="51" class="L6 R4 B5 grid__box__no"></div>
+                <div id="58" class="L6 R5 B5 grid__box__no"></div>
+                <div id="55" class="L6 R6 B5 grid__box__no"></div>
+            </div>
 
-    <div class="grid__box">
-        <div id="59" class="L4 R4 B5 grid__box__no"></div>
-        <div id="56" class="L4 R5 B5 grid__box__no"></div>
-        <div id="52" class="L4 R6 B5 grid__box__no"></div>
-        <div id="53H" class="L5 R4 B5 grid__box__no">3</div>
-        <div id="57H" class="L5 R5 B5 grid__box__no">7</div>
-        <div id="54" class="L5 R6 B5 grid__box__no"></div>
-        <div id="51" class="L6 R4 B5 grid__box__no"></div>
-        <div id="58" class="L6 R5 B5 grid__box__no"></div>
-        <div id="55" class="L6 R6 B5 grid__box__no"></div>
-    </div>
+            <div class="grid__box">
+                <div id="63H" class="L4 R7 B6 grid__box__no">3</div>
+                <div id="67" class="L4 R8 B6 grid__box__no"></div>
+                <div id="68H" class="L4 R9 B6 grid__box__no">8</div>
+                <div id="65H" class="L5 R7 B6 grid__box__no">5</div>
+                <div id="66" class="L5 R8 B6 grid__box__no"></div>
+                <div id="61" class="L5 R9 B6 grid__box__no"></div>
+                <div id="64" class="L6 R7 B6 grid__box__no"></div>
+                <div id="62H" class="L6 R8 B6 grid__box__no">2</div>
+                <div id="69" class="L6 R9 B6 grid__box__no"></div>
+            </div>
 
-    <div class="grid__box">
-        <div id="63H" class="L4 R7 B6 grid__box__no">3</div>
-        <div id="67" class="L4 R8 B6 grid__box__no"></div>
-        <div id="68H" class="L4 R9 B6 grid__box__no">8</div>
-        <div id="65H" class="L5 R7 B6 grid__box__no">5</div>
-        <div id="66" class="L5 R8 B6 grid__box__no"></div>
-        <div id="61" class="L5 R9 B6 grid__box__no"></div>
-        <div id="64" class="L6 R7 B6 grid__box__no"></div>
-        <div id="62H" class="L6 R8 B6 grid__box__no">2</div>
-        <div id="69" class="L6 R9 B6 grid__box__no"></div>
-    </div>
+            <div class="grid__box">
+                <div id="71" class="L7 R1 B7 grid__box__no"></div>
+                <div id="75" class="L7 R2 B7 grid__box__no"></div>
+                <div id="77" class="L7 R3 B7 grid__box__no"></div>
+                <div id="73H" class="L8 R1 B7 grid__box__no">3</div>
+                <div id="79" class="L8 R2 B7 grid__box__no"></div>
+                <div id="76H" class="L8 R3 B7 grid__box__no">6</div>
+                <div id="72" class="L9 R1 B7 grid__box__no"></div>
+                <div id="78" class="L9 R2 B7 grid__box__no"></div>
+                <div id="74H" class="L9 R3 B7 grid__box__no">4</div>
+            </div>
 
-    <div class="grid__box">
-        <div id="71" class="L7 R1 B7 grid__box__no"></div>
-        <div id="75" class="L7 R2 B7 grid__box__no"></div>
-        <div id="77" class="L7 R3 B7 grid__box__no"></div>
-        <div id="73H" class="L8 R1 B7 grid__box__no">3</div>
-        <div id="79" class="L8 R2 B7 grid__box__no"></div>
-        <div id="76H" class="L8 R3 B7 grid__box__no">6</div>
-        <div id="72" class="L9 R1 B7 grid__box__no"></div>
-        <div id="78" class="L9 R2 B7 grid__box__no"></div>
-        <div id="74H" class="L9 R3 B7 grid__box__no">4</div>
-    </div>
+            <div class="grid__box">
+                <div id="84H" class="L7 R4 B8 grid__box__no">4</div>
+                <div id="89H" class="L7 R5 B8 grid__box__no">9</div>
+                <div id="86" class="L7 R6 B8 grid__box__no"></div>
+                <div id="82" class="L8 R4 B8 grid__box__no"></div>
+                <div id="81" class="L8 R5 B8 grid__box__no"></div>
+                <div id="88" class="L8 R6 B8 grid__box__no"></div>
+                <div id="87" class="L9 R4 B8 grid__box__no"></div>
+                <div id="85H" class="L9 R5 B8 grid__box__no">5</div>
+                <div id="83" class="L9 R6 B8 grid__box__no"></div>
+            </div>
 
-    <div class="grid__box">
-        <div id="84H" class="L7 R4 B8 grid__box__no">4</div>
-        <div id="89H" class="L7 R5 B8 grid__box__no">9</div>
-        <div id="86" class="L7 R6 B8 grid__box__no"></div>
-        <div id="82" class="L8 R4 B8 grid__box__no"></div>
-        <div id="81" class="L8 R5 B8 grid__box__no"></div>
-        <div id="88" class="L8 R6 B8 grid__box__no"></div>
-        <div id="87" class="L9 R4 B8 grid__box__no"></div>
-        <div id="85H" class="L9 R5 B8 grid__box__no">5</div>
-        <div id="83" class="L9 R6 B8 grid__box__no"></div>
-    </div>
+            <div class="grid__box">
+                <div id="98H" class="L7 R7 B9 grid__box__no">8</div>
+                <div id="93H" class="L7 R8 B9 grid__box__no">3</div>
+                <div id="92H" class="L7 R9 B9 grid__box__no">2</div>
+                <div id="97" class="L8 R7 B9 grid__box__no"></div>
+                <div id="94H" class="L8 R8 B9 grid__box__no">4</div>
+                <div id="95H" class="L8 R9 B9 grid__box__no">5</div>
+                <div id="91H" class="L9 R7 B9 grid__box__no">1</div>
+                <div id="99H" class="L9 R8 B9 grid__box__no">9</div>
+                <div id="96H" class="L9 R9 B9 grid__box__no">6</div>
+            </div>
+        </main>
 
-    <div class="grid__box">
-        <div id="98H" class="L7 R7 B9 grid__box__no">8</div>
-        <div id="93H" class="L7 R8 B9 grid__box__no">3</div>
-        <div id="92H" class="L7 R9 B9 grid__box__no">2</div>
-        <div id="97" class="L8 R7 B9 grid__box__no"></div>
-        <div id="94H" class="L8 R8 B9 grid__box__no">4</div>
-        <div id="95H" class="L8 R9 B9 grid__box__no">5</div>
-        <div id="91H" class="L9 R7 B9 grid__box__no">1</div>
-        <div id="99H" class="L9 R8 B9 grid__box__no">9</div>
-        <div id="96H" class="L9 R9 B9 grid__box__no">6</div>
-    </div>
-    </main>
 
-    ${R}`,A=`
+
+    ${u}`,A=`
     <header>
         <h1 class="screen__game-name">SUDOKU</h1>
     </header>
@@ -269,7 +271,7 @@
     </div>
     </main>
 
-    ${R}`,q=`
+    ${u}`,q=`
 <header>
 <h1 class="screen__game-name">SUDOKU</h1>
 </header>
@@ -396,7 +398,7 @@
     </div>
     </main>
     
-    ${R}`,w=document.querySelectorAll(".navigation__difficulty--button"),r=document.querySelector(".screen"),u=document.querySelector(".screen");if(!w||!r||!u)throw new Error("Issue With Selector");let v="";w.forEach(c=>{c.addEventListener("click",()=>{v=String(c.getAttribute("id")),v==="easy"?r.innerHTML=T():v==="medium"?r.innerHTML=A:v==="hard"&&(r.innerHTML=q)})});const N=c=>{const o=c.target;if(o.matches("#easy")||o.matches("#medium")||o.matches("#hard")||o.matches(".screen__edit--restart")||o.matches(".screen__edit--delete")){const b=document.querySelector(".screen__edit--restart"),a=document.querySelectorAll(".grid__box__no"),_=document.querySelectorAll(".numbers__single"),d=document.querySelector(".navigation__errors--error-count"),t=document.querySelector(".screen__edit--delete"),H=document.querySelector(".nagivation__home");if(!a||!_||!d||!t||!b||!b||!H)throw new Error("Issue With Selector");let n="",x="",e="",m="",h="",f="",y="",L="";a.forEach(i=>{i.addEventListener("click",()=>{e=" ",n=String(i.getAttribute("id")),h=String(i.getAttribute("class")).slice(3,5),m=String(i.getAttribute("class")).slice(0,2),f=String(i.getAttribute("class")).slice(6,8),x=n.slice(1,2),y=n.slice(2),p(),E()})}),_.forEach(i=>{i.addEventListener("click",()=>{e=String(i.getAttribute("id")),p()})});const E=()=>{const i=Array.from(document.getElementsByClassName("grid__box__no"));for(let s=0;s<i.length;s++)i[s].classList.contains(m)||i[s].classList.contains(f)||i[s].classList.contains(h)?i[s].style.backgroundColor="#D4BBF9":i[s].style.backgroundColor="white"},p=()=>{if(x===e){let i=document.getElementById(n);if(i!=null){i.innerHTML=e,i.style.color="#374785",console.log(i);let s=0;const l=document.querySelectorAll(".grid__box__no");if(!l)throw new Error("issue with experi");for(let g=0;g<l.length;g++)l[g].innerHTML===""&&s++;if(s===0){const g=B(L);console.log(g);let D=v.slice(0,1).toUpperCase()+v.slice(1);r.innerHTML=`<header class="result">
+    ${u}`,w=document.querySelectorAll(".navigation__difficulty--button"),r=document.querySelector(".screen"),H=document.querySelector(".screen");if(!w||!r||!H)throw new Error("Issue With Selector");let v="";w.forEach(c=>{c.addEventListener("click",()=>{v=String(c.getAttribute("id")),v==="easy"?r.innerHTML=T():v==="medium"?r.innerHTML=A:v==="hard"&&(r.innerHTML=q)})});const N=c=>{const o=c.target;if(o.matches("#easy")||o.matches("#medium")||o.matches("#hard")||o.matches(".screen__edit--restart")||o.matches(".screen__edit--delete")){const b=document.querySelector(".screen__edit--restart"),a=document.querySelectorAll(".grid__box__no"),_=document.querySelectorAll(".numbers__single"),d=document.querySelector(".navigation__errors--error-count"),t=document.querySelector(".screen__edit--delete"),m=document.querySelector(".nagivation__home");if(!a||!_||!d||!t||!b||!b||!m)throw new Error("Issue With Selector");let n="",x="",e="",h="",f="",y="",B="",L="";a.forEach(i=>{i.addEventListener("click",()=>{e=" ",n=String(i.getAttribute("id")),f=String(i.getAttribute("class")).slice(3,5),h=String(i.getAttribute("class")).slice(0,2),y=String(i.getAttribute("class")).slice(6,8),x=n.slice(1,2),B=n.slice(2),p(),E()})}),_.forEach(i=>{i.addEventListener("click",()=>{e=String(i.getAttribute("id")),p()})});const E=()=>{const i=Array.from(document.getElementsByClassName("grid__box__no"));for(let s=0;s<i.length;s++)i[s].classList.contains(h)||i[s].classList.contains(y)||i[s].classList.contains(f)?i[s].style.backgroundColor="#D4BBF9":i[s].style.backgroundColor="white"},p=()=>{if(x===e){let i=document.getElementById(n);if(i!=null){i.innerHTML=e,i.style.color="#374785",console.log(i);let s=0;const l=document.querySelectorAll(".grid__box__no");if(!l)throw new Error("issue with experi");for(let g=0;g<l.length;g++)l[g].innerHTML===""&&s++;if(s===0){const g=R(L);console.log(g);let D=v.slice(0,1).toUpperCase()+v.slice(1);r.innerHTML=`<header class="result">
             <h1 class="result__title">Well done!</h1>
             <section class="result-card">
               <img class="result-card__paint"src="./src/neworange.png" alt="">
@@ -405,4 +407,4 @@
               <p class="result-card__errors">${g}</p>
             </section>
             <button class="result__home">Home</button>
-          </header>`}M(c),console.log("this amount left",s)}}else if(e===" "||n===" ")d.innerHTML=d.innerHTML;else if(x!=e){let i=document.getElementById(n);i!=null&&(i.innerHTML=e,i.style.color="#DC541C",d.innerHTML=String(Number(d.innerHTML)+1),B(d.innerHTML))}},C=()=>{v==="easy"?r.innerHTML=T():v==="medium"?r.innerHTML=A:v==="hard"&&(r.innerHTML=q)},k=()=>{let i=document.getElementById(n);console.log("box is",i),i!=null&&y==="H"?i.innerHTML=i.innerHTML:i!=null&&(i.innerHTML="")},B=i=>(L=d.innerHTML,i==="0"?"You made no errors!":i==="1"?`You made ${L} error`:`You made ${L} errors`);console.log(B(L));const S=()=>{window.location.href="index.html"},M=i=>{if(i.target.matches(".numbers__single")){const l=document.querySelector(".result__home");l||console.log("error"),l&&l.addEventListener("click",S)}};a.forEach(i=>{i.addEventListener("click",E)}),t.addEventListener("click",k),b.addEventListener("click",C),H.addEventListener("click",S),u.addEventListener("click",M)}};u.addEventListener("click",N);
+          </header>`}M(c),console.log("this amount left",s)}}else if(e===" "||n===" "||B==="H")d.innerHTML=d.innerHTML;else if(x!=e){let i=document.getElementById(n);i!=null&&(i.innerHTML=e,i.style.color="#DC541C",d.innerHTML=String(Number(d.innerHTML)+1),R(d.innerHTML))}},C=()=>{v==="easy"?r.innerHTML=T():v==="medium"?r.innerHTML=A:v==="hard"&&(r.innerHTML=q)},k=()=>{let i=document.getElementById(n);console.log("box is",i),i!=null&&B==="H"?i.innerHTML=i.innerHTML:i!=null&&(i.innerHTML="")},R=i=>(L=d.innerHTML,i==="0"?"You made no errors!":i==="1"?`You made ${L} error`:`You made ${L} errors`);console.log(R(L));const S=()=>{window.location.href="index.html"},M=i=>{if(i.target.matches(".numbers__single")){const l=document.querySelector(".result__home");l||console.log("error"),l&&l.addEventListener("click",S)}};a.forEach(i=>{i.addEventListener("click",E)}),t.addEventListener("click",k),b.addEventListener("click",C),m.addEventListener("click",S),H.addEventListener("click",M)}};H.addEventListener("click",N);
