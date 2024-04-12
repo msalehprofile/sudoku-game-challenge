@@ -1,7 +1,8 @@
 import "./styling.scss";
+import { Sudoku } from "./object";
 import { endHTML } from "./repeatedgamehtml";
 
-export const renderEasy = () => {
+export const renderGameHTML = (game : Sudoku) => {
     return `
     <header>
         <h1 class="screen__game-name">SUDOKU</h1>
@@ -11,7 +12,7 @@ export const renderEasy = () => {
             <button class="nagivation__home">Home</button>
             <div class="navigation__level">
                 <div class="navigation__level--title">Level:</div>
-                <div class="navigation__level--level">Easy</div>
+                <div class="navigation__level--level">${game.Level}</div>
             </div>
             <div class="navigation__errors">
                 <div class="navigation__errors--error-title">Errors:</div>
@@ -21,115 +22,118 @@ export const renderEasy = () => {
 
         <main class="screen__grid">
             <div class="grid__box">
-                <div id="16H" class="L1 R1 B1 grid__box__no">6</div>
-                <div id="17H" class="L1 R2 B1 grid__box__no">7</div>
-                <div id="12H" class="L1 R3 B1 grid__box__no">2</div>
-                <div id="18" class="L2 R1 B1 grid__box__no"></div>
-                <div id="13H" class="L2 R2 B1 grid__box__no">3</div>
-                <div id="11H" class="L2 R3 B1 grid__box__no">1</div>
-                <div id="15" class="L3 R1 B1 grid__box__no"></div>
-                <div id="14H" class="L3 R2 B1 grid__box__no">4</div>
-                <div id="19" class="L3 R3 B1 grid__box__no"></div>
+                <div id=${game.ID1} class="L1 R1 B1 grid__box__no">${game.B1}</div>
+                <div id=${game.ID2} class="L1 R2 B1 grid__box__no">${game.B2}</div>
+                <div id=${game.ID3} class="L1 R3 B1 grid__box__no">${game.B3}</div>
+                <div id=${game.ID4} class="L2 R1 B1 grid__box__no">${game.B4}</div>
+                <div id=${game.ID5} class="L2 R2 B1 grid__box__no">${game.B5}</div>
+                <div id=${game.ID6} class="L2 R3 B1 grid__box__no">${game.B6}</div>
+                <div id=${game.ID7} class="L3 R1 B1 grid__box__no">${game.B7}</div>
+                <div id=${game.ID8} class="L3 R2 B1 grid__box__no">${game.B8}</div>
+                <div id=${game.ID9} class="L3 R3 B1 grid__box__no">${game.B9}</div>
             </div>
 
             <div class="grid__box">
-                <div id="25" class="L1 R4 B2 grid__box__no"></div>
-                <div id="23" class="L1 R5 B2 grid__box__no"></div>
-                <div id="21H" class="L1 R6 B2 grid__box__no">1</div>
-                <div id="26" class="L2 R4 B2 grid__box__no"></div>
-                <div id="24" class="L2 R5 B2 grid__box__no"></div>
-                <div id="29" class="L2 R6 B2 grid__box__no"></div>
-                <div id="28" class="L3 R4 B2 grid__box__no"></div>
-                <div id="22H" class="L3 R5 B2 grid__box__no">2</div>
-                <div id="27" class="L3 R6 B2 grid__box__no"></div>
+                <div id=${game.ID10} class="L1 R4 B2 grid__box__no">${game.B10}</div>
+                <div id=${game.ID11} class="L1 R5 B2 grid__box__no">${game.B11}</div>
+                <div id=${game.ID12} class="L1 R6 B2 grid__box__no">${game.B12}</div>
+                <div id=${game.ID13} class="L2 R4 B2 grid__box__no">${game.B13}</div>
+                <div id=${game.ID14} class="L2 R5 B2 grid__box__no">${game.B14}</div>
+                <div id=${game.ID15} class="L2 R6 B2 grid__box__no">${game.B15}</div>
+                <div id=${game.ID16} class="L3 R4 B2 grid__box__no">${game.B16}</div>
+                <div id=${game.ID17} class="L3 R5 B2 grid__box__no">${game.B17}</div>
+                <div id=${game.ID18} class="L3 R6 B2 grid__box__no">${game.B18}</div>
             </div>
 
             <div class="grid__box">
-                <div id="39H" class="L1 R7 B3 grid__box__no">9</div>
-                <div id="38H" class="L1 R8 B3 grid__box__no">8</div>
-                <div id="34H" class="L1 R9 B3 grid__box__no">4</div>
-                <div id="32" class="L2 R7 B3 grid__box__no"></div>
-                <div id="35" class="L2 R8 B3 grid__box__no"></div>
-                <div id="37" class="L2 R9 B3 grid__box__no"></div>
-                <div id="36" class="L3 R7 B3 grid__box__no"></div>
-                <div id="31" class="L3 R8 B3 grid__box__no"></div>
-                <div id="33H" class="L3 R9 B3 grid__box__no">3</div>
+                <div id=${game.ID19} class="L1 R7 B3 grid__box__no">${game.B19}</div>
+                <div id=${game.ID20} class="L1 R8 B3 grid__box__no">${game.B20}</div>
+                <div id=${game.ID21} class="L1 R9 B3 grid__box__no">${game.B21}</div>
+                <div id=${game.ID22} class="L2 R7 B3 grid__box__no">${game.B22}</div>
+                <div id=${game.ID23} class="L2 R8 B3 grid__box__no">${game.B23}</div>
+                <div id=${game.ID24} class="L2 R9 B3 grid__box__no">${game.B24}</div>
+                <div id=${game.ID25} class="L3 R7 B3 grid__box__no">${game.B25}</div>
+                <div id=${game.ID26} class="L3 R8 B3 grid__box__no">${game.B26}</div>
+                <div id=${game.ID27} class="L3 R9 B3 grid__box__no">${game.B27}</div>
             </div>
 
             <div class="grid__box">
-                <div id="44H" class="L4 R1 B4 grid__box__no">4</div>
-                <div id="41" class="L4 R2 B4 grid__box__no"></div>
-                <div id="45H" class="L4 R3 B4 grid__box__no">5</div>
-                <div id="49H" class="L5 R1 B4 grid__box__no">9</div>
-                <div id="42H" class="L5 R2 B4 grid__box__no">2</div>
-                <div id="48" class="L5 R3 B4 grid__box__no"></div>
-                <div id="47H" class="L6 R1 B4 grid__box__no">7</div>
-                <div id="46H" class="L6 R2 B4 grid__box__no">6</div>
-                <div id="43" class="L6 R3 B4 grid__box__no"></div>
+                <div id=${game.ID28} class="L4 R1 B4 grid__box__no">${game.B28}</div>
+                <div id=${game.ID29} class="L4 R2 B4 grid__box__no">${game.B29}</div>
+                <div id=${game.ID30} class="L4 R3 B4 grid__box__no">${game.B30}</div>
+                <div id=${game.ID31} class="L5 R1 B4 grid__box__no">${game.B31}</div>
+                <div id=${game.ID32} class="L5 R2 B4 grid__box__no">${game.B32}</div>
+                <div id=${game.ID33} class="L5 R3 B4 grid__box__no">${game.B33}</div>
+                <div id=${game.ID34} class="L6 R1 B4 grid__box__no">${game.B34}</div>
+                <div id=${game.ID35} class="L6 R2 B4 grid__box__no">${game.B35}</div>
+                <div id=${game.ID36} class="L6 R3 B4 grid__box__no">${game.B36}</div>
             </div>
 
             <div class="grid__box">
-                <div id="59" class="L4 R4 B5 grid__box__no"></div>
-                <div id="56" class="L4 R5 B5 grid__box__no"></div>
-                <div id="52" class="L4 R6 B5 grid__box__no"></div>
-                <div id="53H" class="L5 R4 B5 grid__box__no">3</div>
-                <div id="57H" class="L5 R5 B5 grid__box__no">7</div>
-                <div id="54" class="L5 R6 B5 grid__box__no"></div>
-                <div id="51" class="L6 R4 B5 grid__box__no"></div>
-                <div id="58" class="L6 R5 B5 grid__box__no"></div>
-                <div id="55" class="L6 R6 B5 grid__box__no"></div>
+                <div id=${game.ID37} class="L4 R4 B5 grid__box__no">${game.B37}</div>
+                <div id=${game.ID38} class="L4 R5 B5 grid__box__no">${game.B38}</div>
+                <div id=${game.ID39} class="L4 R6 B5 grid__box__no">${game.B39}</div>
+                <div id=${game.ID40} class="L5 R4 B5 grid__box__no">${game.B40}</div>
+                <div id=${game.ID41} class="L5 R5 B5 grid__box__no">${game.B41}</div>
+                <div id=${game.ID42} class="L5 R6 B5 grid__box__no">${game.B42}</div>
+                <div id=${game.ID43} class="L6 R4 B5 grid__box__no">${game.B43}</div>
+                <div id=${game.ID44} class="L6 R5 B5 grid__box__no">${game.B44}</div>
+                <div id=${game.ID45} class="L6 R6 B5 grid__box__no">${game.B45}</div>
             </div>
 
             <div class="grid__box">
-                <div id="63H" class="L4 R7 B6 grid__box__no">3</div>
-                <div id="67" class="L4 R8 B6 grid__box__no"></div>
-                <div id="68H" class="L4 R9 B6 grid__box__no">8</div>
-                <div id="65H" class="L5 R7 B6 grid__box__no">5</div>
-                <div id="66" class="L5 R8 B6 grid__box__no"></div>
-                <div id="61" class="L5 R9 B6 grid__box__no"></div>
-                <div id="64" class="L6 R7 B6 grid__box__no"></div>
-                <div id="62H" class="L6 R8 B6 grid__box__no">2</div>
-                <div id="69" class="L6 R9 B6 grid__box__no"></div>
+                <div id=${game.ID46} class="L4 R7 B6 grid__box__no">${game.B46}</div>
+                <div id=${game.ID47} class="L4 R8 B6 grid__box__no">${game.B47}</div>
+                <div id=${game.ID48} class="L4 R9 B6 grid__box__no">${game.B48}</div>
+                <div id=${game.ID49} class="L5 R7 B6 grid__box__no">${game.B49}</div>
+                <div id=${game.ID50} class="L5 R8 B6 grid__box__no">${game.B50}</div>
+                <div id=${game.ID51} class="L5 R9 B6 grid__box__no">${game.B51}</div>
+                <div id=${game.ID52} class="L6 R7 B6 grid__box__no">${game.B52}</div>
+                <div id=${game.ID53} class="L6 R8 B6 grid__box__no">${game.B53}</div>
+                <div id=${game.ID54} class="L6 R9 B6 grid__box__no">${game.B54}</div>
             </div>
 
             <div class="grid__box">
-                <div id="71" class="L7 R1 B7 grid__box__no"></div>
-                <div id="75" class="L7 R2 B7 grid__box__no"></div>
-                <div id="77" class="L7 R3 B7 grid__box__no"></div>
-                <div id="73H" class="L8 R1 B7 grid__box__no">3</div>
-                <div id="79" class="L8 R2 B7 grid__box__no"></div>
-                <div id="76H" class="L8 R3 B7 grid__box__no">6</div>
-                <div id="72" class="L9 R1 B7 grid__box__no"></div>
-                <div id="78" class="L9 R2 B7 grid__box__no"></div>
-                <div id="74H" class="L9 R3 B7 grid__box__no">4</div>
+                <div id=${game.ID55} class="L7 R1 B7 grid__box__no">${game.B55}</div>
+                <div id=${game.ID56} class="L7 R2 B7 grid__box__no">${game.B56}</div>
+                <div id=${game.ID57} class="L7 R3 B7 grid__box__no">${game.B57}</div>
+                <div id=${game.ID58} class="L8 R1 B7 grid__box__no">${game.B58}</div>
+                <div id=${game.ID59} class="L8 R2 B7 grid__box__no">${game.B59}</div>
+                <div id=${game.ID60} class="L8 R3 B7 grid__box__no">${game.B60}</div>
+                <div id=${game.ID61} class="L9 R1 B7 grid__box__no">${game.B61}</div>
+                <div id=${game.ID62} class="L9 R2 B7 grid__box__no">${game.B62}</div>
+                <div id=${game.ID63} class="L9 R3 B7 grid__box__no">${game.B63}</div>
             </div>
 
             <div class="grid__box">
-                <div id="84H" class="L7 R4 B8 grid__box__no">4</div>
-                <div id="89H" class="L7 R5 B8 grid__box__no">9</div>
-                <div id="86" class="L7 R6 B8 grid__box__no"></div>
-                <div id="82" class="L8 R4 B8 grid__box__no"></div>
-                <div id="81" class="L8 R5 B8 grid__box__no"></div>
-                <div id="88" class="L8 R6 B8 grid__box__no"></div>
-                <div id="87" class="L9 R4 B8 grid__box__no"></div>
-                <div id="85H" class="L9 R5 B8 grid__box__no">5</div>
-                <div id="83" class="L9 R6 B8 grid__box__no"></div>
+                <div id=${game.ID64} class="L7 R4 B8 grid__box__no">${game.B64}</div>
+                <div id=${game.ID65} class="L7 R5 B8 grid__box__no">${game.B65}</div>
+                <div id=${game.ID66} class="L7 R6 B8 grid__box__no">${game.B66}</div>
+                <div id=${game.ID67} class="L8 R4 B8 grid__box__no">${game.B67}</div>
+                <div id=${game.ID68} class="L8 R5 B8 grid__box__no">${game.B68}</div>
+                <div id=${game.ID69} class="L8 R6 B8 grid__box__no">${game.B69}</div>
+                <div id=${game.ID70} class="L9 R4 B8 grid__box__no">${game.B70}</div>
+                <div id=${game.ID71} class="L9 R5 B8 grid__box__no">${game.B71}</div>
+                <div id=${game.ID72} class="L9 R6 B8 grid__box__no">${game.B72}</div>
             </div>
 
             <div class="grid__box">
-                <div id="98H" class="L7 R7 B9 grid__box__no">8</div>
-                <div id="93H" class="L7 R8 B9 grid__box__no">3</div>
-                <div id="92H" class="L7 R9 B9 grid__box__no">2</div>
-                <div id="97" class="L8 R7 B9 grid__box__no"></div>
-                <div id="94H" class="L8 R8 B9 grid__box__no">4</div>
-                <div id="95H" class="L8 R9 B9 grid__box__no">5</div>
-                <div id="91H" class="L9 R7 B9 grid__box__no">1</div>
-                <div id="99H" class="L9 R8 B9 grid__box__no">9</div>
-                <div id="96H" class="L9 R9 B9 grid__box__no">6</div>
+                <div id=${game.ID73} class="L7 R7 B9 grid__box__no">${game.B73}</div>
+                <div id=${game.ID74} class="L7 R8 B9 grid__box__no">${game.B74}</div>
+                <div id=${game.ID75} class="L7 R9 B9 grid__box__no">${game.B75}</div>
+                <div id=${game.ID76} class="L8 R7 B9 grid__box__no">${game.B76}</div>
+                <div id=${game.ID77} class="L8 R8 B9 grid__box__no">${game.B77}</div>
+                <div id=${game.ID78} class="L8 R9 B9 grid__box__no">${game.B78}</div>
+                <div id=${game.ID79} class="L9 R7 B9 grid__box__no">${game.B79}</div>
+                <div id=${game.ID80} class="L9 R8 B9 grid__box__no">${game.B80}</div>
+                <div id=${game.ID81} class="L9 R9 B9 grid__box__no">${game.B81}</div>
             </div>
         </main>
 
 
 
     ${endHTML}`;
-};
+}
+
+
+
