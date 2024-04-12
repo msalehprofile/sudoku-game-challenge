@@ -1,4 +1,4 @@
-import { renderGameHTML } from "./easy";
+import { renderGameHTML } from "./gamecompiler";
 
 import { easyMode } from "./object";
 import { mediumMode } from "./object";
