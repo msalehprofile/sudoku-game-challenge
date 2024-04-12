@@ -115,8 +115,8 @@ const handleGame = (event: Event) => {
 
     // check if the number player selected matches the correct answer
     const checkMatch = () => {
+      let inputtedNumber = document.getElementById(boxId);
       if (boxValue === numberId) {
-        let inputtedNumber = document.getElementById(boxId);
         if (inputtedNumber != null) {
           inputtedNumber.innerHTML = numberId;
           inputtedNumber.style.color = "#374785";
@@ -127,7 +127,7 @@ const handleGame = (event: Event) => {
           const boxArr = document.querySelectorAll(".grid__box__no");
 
           if (!boxArr) {
-            throw new Error("issue with experi");
+            throw new Error("issue with selectors");
           }
 
           for (let i = 0; i < boxArr.length; i++) {
@@ -154,14 +154,16 @@ const handleGame = (event: Event) => {
           handleFinalGoHome(event);
           console.log("this amount left", emptyBoxes);
         }
-      } else if (numberId === " " || boxId === " " || boxeditable === "H") {
+      } 
+      else if (numberId === " " || boxeditable === "H") {
         errorCount.innerHTML = errorCount.innerHTML;
-      } else if (boxValue != numberId) {
-        let inputtedNumber = document.getElementById(boxId);
+      } else 
+      if (boxValue != numberId) {
         if (inputtedNumber != null) {
           inputtedNumber.innerHTML = numberId;
           inputtedNumber.style.color = "#DC541C";
-          errorCount.innerHTML = String(Number(errorCount.innerHTML) + 1);
+          totalErrors = String(Number(totalErrors)+1)
+          errorCount.innerHTML = totalErrors;
           returnFinalScoreMessage(errorCount.innerHTML);
         }
       }
