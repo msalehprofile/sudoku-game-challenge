@@ -1,6 +1,8 @@
-import { renderEasy } from "./easy";
-import { renderMedium } from "./medium";
-import { renderHard } from "./hard";
+import { renderGameHTML } from "./gamecompiler";
+
+import { easyMode } from "./object";
+import { mediumMode } from "./object";
+import { hardMode }  from "./object";
 
 const levelButtonSelection = document.querySelectorAll<HTMLButtonElement>(
   ".navigation__difficulty--button"
@@ -13,17 +15,24 @@ if (!levelButtonSelection || !screenLayoutHTML || !loadedGame) {
 }
 
 let selectedLevel = "";
+let renderEasyGame = "";
+let renderMediumGame = "";
+let renderHardGame = "";
 
 // for each loop to render the level selected onto the screen
 levelButtonSelection.forEach((level) => {
   level.addEventListener("click", () => {
     selectedLevel = String(level.getAttribute("id"));
     if (selectedLevel === "easy") {
-      screenLayoutHTML.innerHTML = renderEasy();
+      renderEasyGame = renderGameHTML(easyMode[Math.floor(Math.random()*3)]);
+      screenLayoutHTML.innerHTML = renderEasyGame
+      
     } else if (selectedLevel === "medium") {
-      screenLayoutHTML.innerHTML = renderMedium;
+      renderMediumGame = renderGameHTML(mediumMode[Math.floor(Math.random()*3)]);
+      screenLayoutHTML.innerHTML = renderMediumGame;
     } else if (selectedLevel === "hard") {
-      screenLayoutHTML.innerHTML = renderHard;
+      renderHardGame = renderGameHTML(hardMode[Math.floor(Math.random()*3)]);
+      screenLayoutHTML.innerHTML = renderHardGame;
     }
   });
 });
@@ -115,19 +124,18 @@ const handleGame = (event: Event) => {
 
     // check if the number player selected matches the correct answer
     const checkMatch = () => {
+      let inputtedNumber = document.getElementById(boxId);
       if (boxValue === numberId) {
-        let inputtedNumber = document.getElementById(boxId);
         if (inputtedNumber != null) {
           inputtedNumber.innerHTML = numberId;
           inputtedNumber.style.color = "#374785";
-          console.log(inputtedNumber);
 
           // checking how many empty boxes are left
           let emptyBoxes = 0;
           const boxArr = document.querySelectorAll(".grid__box__no");
 
           if (!boxArr) {
-            throw new Error("issue with experi");
+            throw new Error("issue with selectors");
           }
 
           for (let i = 0; i < boxArr.length; i++) {
@@ -137,7 +145,6 @@ const handleGame = (event: Event) => {
           }
           if (emptyBoxes === 0) {
             const finalScoreMessage = returnFinalScoreMessage(totalErrors);
-            console.log(finalScoreMessage);
             let finishLevel =
               selectedLevel.slice(0, 1).toUpperCase() + selectedLevel.slice(1);
             screenLayoutHTML.innerHTML = `<header class="result">
@@ -152,16 +159,17 @@ const handleGame = (event: Event) => {
           </header>`;
           }
           handleFinalGoHome(event);
-          console.log("this amount left", emptyBoxes);
         }
-      } else if (numberId === " " || boxId === " " || boxeditable === "H") {
+      } 
+      else if (numberId === " " || boxeditable === "H") {
         errorCount.innerHTML = errorCount.innerHTML;
-      } else if (boxValue != numberId) {
-        let inputtedNumber = document.getElementById(boxId);
+      } else 
+      if (boxValue != numberId) {
         if (inputtedNumber != null) {
           inputtedNumber.innerHTML = numberId;
           inputtedNumber.style.color = "#DC541C";
-          errorCount.innerHTML = String(Number(errorCount.innerHTML) + 1);
+          totalErrors = String(Number(totalErrors)+1)
+          errorCount.innerHTML = totalErrors;
           returnFinalScoreMessage(errorCount.innerHTML);
         }
       }
@@ -170,11 +178,11 @@ const handleGame = (event: Event) => {
     // restarts the game
     const handleRestart = () => {
       if (selectedLevel === "easy") {
-        screenLayoutHTML.innerHTML = renderEasy();
+        screenLayoutHTML.innerHTML = renderEasyGame;
       } else if (selectedLevel === "medium") {
-        screenLayoutHTML.innerHTML = renderMedium;
+        screenLayoutHTML.innerHTML = renderMediumGame;
       } else if (selectedLevel === "hard") {
-        screenLayoutHTML.innerHTML = renderHard;
+        screenLayoutHTML.innerHTML = renderHardGame;
       }
     };
 
@@ -182,7 +190,6 @@ const handleGame = (event: Event) => {
     const handleDelete = () => {
       let inputtedNumber = document.getElementById(boxId);
 
-      console.log("box is", inputtedNumber);
       if (inputtedNumber != null && boxeditable === "H") {
         inputtedNumber.innerHTML = inputtedNumber.innerHTML;
       } else if (inputtedNumber != null) {
@@ -201,7 +208,7 @@ const handleGame = (event: Event) => {
         return `You made ${totalErrors} errors`;
       }
     };
-    console.log(returnFinalScoreMessage(totalErrors));
+
 
     // handles the go back button on the game page
     const handleGoHome = () => {
@@ -215,7 +222,6 @@ const handleGame = (event: Event) => {
       if (target.matches(".numbers__single")) {
         const goHomeButton = document.querySelector(".result__home");
         if (!goHomeButton) {
-          console.log("error");
         }
 
         if (goHomeButton) {
