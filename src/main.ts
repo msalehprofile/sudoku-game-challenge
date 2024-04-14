@@ -1,5 +1,4 @@
 import { renderGameHTML } from "./gamecompiler";
-
 import { easyMode } from "./object";
 import { mediumMode } from "./object";
 import { hardMode } from "./object";
@@ -125,7 +124,6 @@ const handleGame = (event: Event) => {
     const checkMatch = () => {
       let inputtedNumber = document.getElementById(boxId);
       let currentErrors = errorCount.innerHTML;
-      console.log(currentErrors);
 
       if (boxValue === numberId) {
         if (inputtedNumber != null) {
@@ -150,10 +148,8 @@ const handleGame = (event: Event) => {
             let finishLevel =
               selectedLevel.slice(0, 1).toUpperCase() + selectedLevel.slice(1);
             screenLayoutHTML.innerHTML = `<header class="result">
-            <h1 class="result__title">Well done!</h1>
+            <h1 class="result__title">Level completed</h1>
             <section class="result-card">
-              <img class="result-card__paint"src="./src/neworange.png" alt="">
-
               <p class="result-card__level">Difficulty: ${finishLevel}</p>
               <p class="result-card__errors">${finalScoreMessage}</p>
             </section>
@@ -189,7 +185,6 @@ const handleGame = (event: Event) => {
     // delete numbers from selected box
     const handleDelete = () => {
       let inputtedNumber = document.getElementById(boxId);
-
       if (inputtedNumber != null && boxeditable === "H") {
         inputtedNumber.innerHTML = inputtedNumber.innerHTML;
       } else if (inputtedNumber != null) {
