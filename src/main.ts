@@ -1,8 +1,7 @@
 import { renderGameHTML } from "./gamecompiler";
-
 import { easyMode } from "./object";
 import { mediumMode } from "./object";
-import { hardMode }  from "./object";
+import { hardMode } from "./object";
 
 const levelButtonSelection = document.querySelectorAll<HTMLButtonElement>(
   ".navigation__difficulty--button"
@@ -24,14 +23,15 @@ levelButtonSelection.forEach((level) => {
   level.addEventListener("click", () => {
     selectedLevel = String(level.getAttribute("id"));
     if (selectedLevel === "easy") {
-      renderEasyGame = renderGameHTML(easyMode[Math.floor(Math.random()*3)]);
-      screenLayoutHTML.innerHTML = renderEasyGame
-      
+      renderEasyGame = renderGameHTML(easyMode[Math.floor(Math.random() * 3)]);
+      screenLayoutHTML.innerHTML = renderEasyGame;
     } else if (selectedLevel === "medium") {
-      renderMediumGame = renderGameHTML(mediumMode[Math.floor(Math.random()*3)]);
+      renderMediumGame = renderGameHTML(
+        mediumMode[Math.floor(Math.random() * 3)]
+      );
       screenLayoutHTML.innerHTML = renderMediumGame;
     } else if (selectedLevel === "hard") {
-      renderHardGame = renderGameHTML(hardMode[Math.floor(Math.random()*3)]);
+      renderHardGame = renderGameHTML(hardMode[Math.floor(Math.random() * 3)]);
       screenLayoutHTML.innerHTML = renderHardGame;
     }
   });
@@ -58,7 +58,6 @@ const handleGame = (event: Event) => {
     );
     const goBackButton = document.querySelector(".nagivation__home");
 
-
     if (
       !selectChosenBox ||
       !selectChosenNumber ||
@@ -66,8 +65,7 @@ const handleGame = (event: Event) => {
       !selectDelete ||
       !restartButton ||
       !restartButton ||
-      !goBackButton 
-
+      !goBackButton
     ) {
       throw new Error("Issue With Selector");
     }
@@ -125,6 +123,8 @@ const handleGame = (event: Event) => {
     // check if the number player selected matches the correct answer
     const checkMatch = () => {
       let inputtedNumber = document.getElementById(boxId);
+      let currentErrors = errorCount.innerHTML;
+
       if (boxValue === numberId) {
         if (inputtedNumber != null) {
           inputtedNumber.innerHTML = numberId;
@@ -148,10 +148,8 @@ const handleGame = (event: Event) => {
             let finishLevel =
               selectedLevel.slice(0, 1).toUpperCase() + selectedLevel.slice(1);
             screenLayoutHTML.innerHTML = `<header class="result">
-            <h1 class="result__title">Well done!</h1>
+            <h1 class="result__title">Level completed</h1>
             <section class="result-card">
-              <img class="result-card__paint"src="./src/neworange.png" alt="">
-
               <p class="result-card__level">Difficulty: ${finishLevel}</p>
               <p class="result-card__errors">${finalScoreMessage}</p>
             </section>
@@ -160,15 +158,13 @@ const handleGame = (event: Event) => {
           }
           handleFinalGoHome(event);
         }
-      } 
-      else if (numberId === " " || boxeditable === "H") {
+      } else if (numberId === " " || boxeditable === "H") {
         errorCount.innerHTML = errorCount.innerHTML;
-      } else 
-      if (boxValue != numberId) {
+      } else if (boxValue != numberId) {
         if (inputtedNumber != null) {
           inputtedNumber.innerHTML = numberId;
           inputtedNumber.style.color = "#DC541C";
-          totalErrors = String(Number(totalErrors)+1)
+          totalErrors = String(Number(currentErrors) + 1);
           errorCount.innerHTML = totalErrors;
           returnFinalScoreMessage(errorCount.innerHTML);
         }
@@ -189,7 +185,6 @@ const handleGame = (event: Event) => {
     // delete numbers from selected box
     const handleDelete = () => {
       let inputtedNumber = document.getElementById(boxId);
-
       if (inputtedNumber != null && boxeditable === "H") {
         inputtedNumber.innerHTML = inputtedNumber.innerHTML;
       } else if (inputtedNumber != null) {
@@ -201,14 +196,13 @@ const handleGame = (event: Event) => {
     const returnFinalScoreMessage = (errors: string) => {
       totalErrors = errorCount.innerHTML;
       if (errors === "0") {
-        return "You made no errors!";
+        return "You got no penalties!";
       } else if (errors === "1") {
-        return `You made ${totalErrors} error`;
+        return `You recieved ${totalErrors} penalty`;
       } else {
-        return `You made ${totalErrors} errors`;
+        return `You recieved ${totalErrors} penalties`;
       }
     };
-
 
     // handles the go back button on the game page
     const handleGoHome = () => {
@@ -225,8 +219,8 @@ const handleGame = (event: Event) => {
         }
 
         if (goHomeButton) {
-        goHomeButton.addEventListener("click", handleGoHome)
-        };
+          goHomeButton.addEventListener("click", handleGoHome);
+        }
       }
     };
 

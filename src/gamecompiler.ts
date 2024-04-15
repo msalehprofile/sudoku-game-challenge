@@ -15,8 +15,8 @@ export const renderGameHTML = (game : Sudoku) => {
                 <div class="navigation__level--level">${game.Level}</div>
             </div>
             <div class="navigation__errors">
-                <div class="navigation__errors--error-title">Errors:</div>
-                <div class="navigation__errors--error-count">0</div>
+                <div class="navigation__errors--error-title">Penalty:</div>
+                <div id="errors "class="navigation__errors--error-count">0</div>
             </div>
         </navigation>
 
