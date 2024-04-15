@@ -1,6 +1,4 @@
-// export type Sudoku = {
-//     GameCombo: []
-// }
+
 
 export type Sudoku = {
     Level: String;
